@@ -1,0 +1,6 @@
+torch>=2.3
+numpy
+pytest
+ninja
+matplotlib
+# flash-attn  (Ampere+ GPUs only, install separately: pip install flash-attn --no-build-isolation)

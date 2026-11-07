@@ -1,0 +1,19 @@
+--- a/src/cuda-sim/instructions.cc	2026-11-05 20:15:47.614726438 -0700
++++ b/src/cuda-sim/instructions.cc	2026-11-05 20:15:47.631912549 -0700
+@@ -1,3 +1,4 @@
++#include <cstring>
+ // Copyright (c) 2009-2021, Tor M. Aamodt, Wilson W.L. Fung, Ali Bakhoda,
+ // Jimmy Kwa, George L. Yuan, Vijay Kandiah, Nikos Hardavellas,
+ // Mahmoud Khairy, Junrui Pan, Timothy G. Rogers
+@@ -1957,7 +1958,10 @@
+             hex_val = (v[k / 2].s64 & 0xffff);
+           else
+             hex_val = ((v[k / 2].s64 & 0xffff0000) >> 16);
+-          nw_v[k].f16 = *(reinterpret_cast<half *>(hex_val));
++          {  // reinterpret the 16 bits as a half (the original dereferenced them as a pointer)
++            unsigned short bits16 = (unsigned short)hex_val;
++            std::memcpy(&nw_v[k].f16, &bits16, sizeof(bits16));
++          }
+         }
+       }
+       if (!((operand_num == 3) && (type2 == F32_TYPE))) {

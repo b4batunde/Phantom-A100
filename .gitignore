@@ -1,0 +1,8 @@
+build/
+*.egg-info/
+*.so
+__pycache__/
+.pytest_cache/
+results/*.ncu-rep
+results/*.nsys-rep
+.DS_Store

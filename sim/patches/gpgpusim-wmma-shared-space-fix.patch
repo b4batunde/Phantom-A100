@@ -1,0 +1,40 @@
+--- a/src/cuda-sim/ptx.l	2026-11-05 20:17:45.538059441 -0700
++++ b/src/cuda-sim/ptx.l	2026-11-05 20:17:45.553099372 -0700
+@@ -186,9 +186,9 @@
+ \.m32n8k16\.global TC; yylval->int_value = M32N8K16; return CONFIGURATION;
+ \.m8n32k16\.global TC;  yylval->int_value = M8N32K16; return CONFIGURATION;
+ 
+-\.m16n16k16\.shared TC; yylval->int_value = M16N16K16; return CONFIGURATION;
+-\.m32n8k16\.shared TC; yylval->int_value = M32N8K16; return CONFIGURATION;
+-\.m8n32k16\.shared TC;  yylval->int_value = M8N32K16; return CONFIGURATION;
++\.m16n16k16\.shared TC; yylval->int_value = M16N16K16 | WMMA_SHARED_SPACE_FLAG; return CONFIGURATION;
++\.m32n8k16\.shared TC; yylval->int_value = M32N8K16 | WMMA_SHARED_SPACE_FLAG; return CONFIGURATION;
++\.m8n32k16\.shared TC;  yylval->int_value = M8N32K16 | WMMA_SHARED_SPACE_FLAG; return CONFIGURATION;
+ 
+ \.m16n16k16 TC; yylval->int_value = M16N16K16; return CONFIGURATION;
+ \.m32n8k16 TC; yylval->int_value = M32N8K16; return CONFIGURATION;
+--- a/src/cuda-sim/ptx.y	2026-11-05 20:17:45.539602653 -0700
++++ b/src/cuda-sim/ptx.y	2026-11-05 20:17:45.553451778 -0700
+@@ -579,11 +579,11 @@
+ 	|  PRMT_ECR_MODE { recognizer->add_option( PRMT_ECR_MODE); }
+ 	;
+ 
+-wmma_spec: WMMA_DIRECTIVE LAYOUT CONFIGURATION{recognizer->add_space_spec(global_space,0);recognizer->add_ptr_spec(global_space); recognizer->add_wmma_option($1);recognizer->add_wmma_option($2);recognizer->add_wmma_option($3);}
++wmma_spec: WMMA_DIRECTIVE LAYOUT CONFIGURATION{ /* honor an explicit .shared state space (lexed as part of the shape token) */ int wmma_cfg = $3 & ~WMMA_SHARED_SPACE_FLAG; enum _memory_space_t wmma_space = ($3 & WMMA_SHARED_SPACE_FLAG) ? shared_space : global_space; recognizer->add_space_spec(wmma_space,0);recognizer->add_ptr_spec(wmma_space); recognizer->add_wmma_option($1);recognizer->add_wmma_option($2);recognizer->add_wmma_option(wmma_cfg);}
+ 	| WMMA_DIRECTIVE LAYOUT LAYOUT CONFIGURATION{recognizer->add_wmma_option($1);recognizer->add_wmma_option($2);recognizer->add_wmma_option($3);recognizer->add_wmma_option($4);}
+ 	;
+ 
+-vp_spec: WMMA_DIRECTIVE LAYOUT CONFIGURATION{recognizer->add_space_spec(global_space,0);recognizer->add_ptr_spec(global_space);recognizer->add_wmma_option($1);recognizer->add_wmma_option($2);recognizer->add_wmma_option($3);}
++vp_spec: WMMA_DIRECTIVE LAYOUT CONFIGURATION{ /* honor an explicit .shared state space (lexed as part of the shape token) */ int wmma_cfg = $3 & ~WMMA_SHARED_SPACE_FLAG; enum _memory_space_t wmma_space = ($3 & WMMA_SHARED_SPACE_FLAG) ? shared_space : global_space; recognizer->add_space_spec(wmma_space,0);recognizer->add_ptr_spec(wmma_space); recognizer->add_wmma_option($1);recognizer->add_wmma_option($2);recognizer->add_wmma_option(wmma_cfg);}
+ 	| WMMA_DIRECTIVE LAYOUT LAYOUT CONFIGURATION{recognizer->add_wmma_option($1);recognizer->add_wmma_option($2);recognizer->add_wmma_option($3);recognizer->add_wmma_option($4);}
+ 	;
+ 
+--- a/src/cuda-sim/opcodes.h	2026-11-05 20:17:52.362278121 -0700
++++ b/src/cuda-sim/opcodes.h	2026-11-05 20:17:52.376528826 -0700
+@@ -74,4 +74,6 @@
+   M8N32K16
+ 
+ };
++// Set on a WMMA shape token whose PTX also named the .shared state space.
++const int WMMA_SHARED_SPACE_FLAG = 0x10000;
+ #endif

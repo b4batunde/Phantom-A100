@@ -1,0 +1,25 @@
+diff --git a/src/cuda-sim/instructions.cc b/src/cuda-sim/instructions.cc
+index f6324fb..75ef234 100644
+--- a/src/cuda-sim/instructions.cc
++++ b/src/cuda-sim/instructions.cc
+@@ -5423,7 +5440,19 @@ void shfl_impl(const ptx_instruction *pI, core_t *core, warp_inst_t inst) {
+         "threads in a warp\n");
+     data.u32 = 0;
+   }
+-  thread->set_operand_value(dst, data, i_type, thread, pI);
++  if (dst.get_double_operand_type() != 0) {
++    // "shfl.sync d|p, ...": d receives the shuffled value and p whether the source lane was in
++    // range. The parser tags any non-setp "a|b" destination as (predicate | data), the reverse
++    // of shfl's (data | predicate), so set_operand_value() would write the value into p and a
++    // flag into d. Write both registers explicitly.
++    thread->set_reg(dst.vec_symbol(0), data);
++    ptx_reg_t pred_value;
++    pred_value.u64 = 0;
++    pred_value.pred = p ? 1 : 0;
++    thread->set_reg(dst.vec_symbol(1), pred_value);
++  } else {
++    thread->set_operand_value(dst, data, i_type, thread, pI);
++  }
+ 
+   /*
+   TODO: deal with predicates appropriately using the following pseudocode:

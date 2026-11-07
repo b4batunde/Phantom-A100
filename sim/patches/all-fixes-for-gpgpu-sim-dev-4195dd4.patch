@@ -1,0 +1,103 @@
+diff --git a/src/cuda-sim/instructions.cc b/src/cuda-sim/instructions.cc
+index f6324fb..75ef234 100644
+--- a/src/cuda-sim/instructions.cc
++++ b/src/cuda-sim/instructions.cc
+@@ -1,3 +1,4 @@
++#include <cstring>
+ // Copyright (c) 2009-2021, Tor M. Aamodt, Wilson W.L. Fung, Ali Bakhoda,
+ // Jimmy Kwa, George L. Yuan, Vijay Kandiah, Nikos Hardavellas,
+ // Mahmoud Khairy, Junrui Pan, Timothy G. Rogers
+@@ -1949,7 +1950,10 @@ void mma_impl(const ptx_instruction *pI, core_t *core, warp_inst_t inst) {
+             hex_val = (v[k / 2].s64 & 0xffff);
+           else
+             hex_val = ((v[k / 2].s64 & 0xffff0000) >> 16);
+-          nw_v[k].f16 = *(reinterpret_cast<half *>(hex_val));
++          {  // reinterpret the 16 bits as a half (the original dereferenced them as a pointer)
++            unsigned short bits16 = (unsigned short)hex_val;
++            std::memcpy(&nw_v[k].f16, &bits16, sizeof(bits16));
++          }
+         }
+       }
+       if (!((operand_num == 3) && (type2 == F32_TYPE))) {
+@@ -2042,6 +2046,19 @@ void mma_impl(const ptx_instruction *pI, core_t *core, warp_inst_t inst) {
+ 
+   for (i = 0; i < 16; i++) {
+     for (j = 0; j < 16; j++) {
++      if (type == F32_TYPE) {
++        // FP32 accumulator (D is f32): tensor cores keep the dot product in FP32.
++        // The original code summed the 16 products in FP16, losing ~3 decimal digits.
++        float acc32 = 0.f;
++        for (k = 0; k < 16; k++)
++          acc32 += (float)matrix_a[i][k].f16 * (float)matrix_b[k][j].f16;
++        if (type2 == F16_TYPE)
++          acc32 += (float)matrix_c[i][j].f16;
++        else
++          acc32 += matrix_c[i][j].f32;
++        matrix_d[i][j].f32 = acc32;
++        continue;
++      }
+       for (k = 0; k < 16; k++) {
+         matrix_d[i][j].f16 =
+             matrix_d[i][j].f16 + matrix_a[i][k].f16 * matrix_b[k][j].f16;
+@@ -5423,7 +5440,19 @@ void shfl_impl(const ptx_instruction *pI, core_t *core, warp_inst_t inst) {
+         "threads in a warp\n");
+     data.u32 = 0;
+   }
+-  thread->set_operand_value(dst, data, i_type, thread, pI);
++  if (dst.get_double_operand_type() != 0) {
++    // "shfl.sync d|p, ...": d receives the shuffled value and p whether the source lane was in
++    // range. The parser tags any non-setp "a|b" destination as (predicate | data), the reverse
++    // of shfl's (data | predicate), so set_operand_value() would write the value into p and a
++    // flag into d. Write both registers explicitly.
++    thread->set_reg(dst.vec_symbol(0), data);
++    ptx_reg_t pred_value;
++    pred_value.u64 = 0;
++    pred_value.pred = p ? 1 : 0;
++    thread->set_reg(dst.vec_symbol(1), pred_value);
++  } else {
++    thread->set_operand_value(dst, data, i_type, thread, pI);
++  }
+ 
+   /*
+   TODO: deal with predicates appropriately using the following pseudocode:
+diff --git a/src/cuda-sim/opcodes.h b/src/cuda-sim/opcodes.h
+index dc1e8c9..3a386d9 100644
+--- a/src/cuda-sim/opcodes.h
++++ b/src/cuda-sim/opcodes.h
+@@ -74,4 +74,6 @@ enum wmma_type {
+   M8N32K16
+ 
+ };
++// Set on a WMMA shape token whose PTX also named the .shared state space.
++const int WMMA_SHARED_SPACE_FLAG = 0x10000;
+ #endif
+diff --git a/src/cuda-sim/ptx.l b/src/cuda-sim/ptx.l
+index 3d4bd50..8843b6a 100644
+--- a/src/cuda-sim/ptx.l
++++ b/src/cuda-sim/ptx.l
+@@ -184,9 +184,9 @@ breakaddr  TC; yylval->int_value = BREAKADDR_OP; return OPCODE;
+ \.m32n8k16\.global TC; yylval->int_value = M32N8K16; return CONFIGURATION;
+ \.m8n32k16\.global TC;  yylval->int_value = M8N32K16; return CONFIGURATION;
+ 
+-\.m16n16k16\.shared TC; yylval->int_value = M16N16K16; return CONFIGURATION;
+-\.m32n8k16\.shared TC; yylval->int_value = M32N8K16; return CONFIGURATION;
+-\.m8n32k16\.shared TC;  yylval->int_value = M8N32K16; return CONFIGURATION;
++\.m16n16k16\.shared TC; yylval->int_value = M16N16K16 | WMMA_SHARED_SPACE_FLAG; return CONFIGURATION;
++\.m32n8k16\.shared TC; yylval->int_value = M32N8K16 | WMMA_SHARED_SPACE_FLAG; return CONFIGURATION;
++\.m8n32k16\.shared TC;  yylval->int_value = M8N32K16 | WMMA_SHARED_SPACE_FLAG; return CONFIGURATION;
+ 
+ \.m16n16k16 TC; yylval->int_value = M16N16K16; return CONFIGURATION;
+ \.m32n8k16 TC; yylval->int_value = M32N8K16; return CONFIGURATION;
+diff --git a/src/cuda-sim/ptx.y b/src/cuda-sim/ptx.y
+index 5e1a51c..24e3d80 100644
+--- a/src/cuda-sim/ptx.y
++++ b/src/cuda-sim/ptx.y
+@@ -573,7 +573,7 @@ prmt_spec: PRMT_F4E_MODE { recognizer->add_option( PRMT_F4E_MODE); }
+ 	|  PRMT_ECR_MODE { recognizer->add_option( PRMT_ECR_MODE); }
+ 	;
+ 
+-wmma_spec: WMMA_DIRECTIVE LAYOUT CONFIGURATION{recognizer->add_space_spec(global_space,0);recognizer->add_ptr_spec(global_space); recognizer->add_wmma_option($1);recognizer->add_wmma_option($2);recognizer->add_wmma_option($3);}
++wmma_spec: WMMA_DIRECTIVE LAYOUT CONFIGURATION{ /* honor an explicit .shared state space (lexed as part of the shape token) */ int wmma_cfg = $3 & ~WMMA_SHARED_SPACE_FLAG; enum _memory_space_t wmma_space = ($3 & WMMA_SHARED_SPACE_FLAG) ? shared_space : global_space; recognizer->add_space_spec(wmma_space,0);recognizer->add_ptr_spec(wmma_space); recognizer->add_wmma_option($1);recognizer->add_wmma_option($2);recognizer->add_wmma_option(wmma_cfg);}
+ 	| WMMA_DIRECTIVE LAYOUT LAYOUT CONFIGURATION{recognizer->add_wmma_option($1);recognizer->add_wmma_option($2);recognizer->add_wmma_option($3);recognizer->add_wmma_option($4);}
+ 	;
+ 

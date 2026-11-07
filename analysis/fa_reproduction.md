@@ -1,0 +1,15 @@
+# Reproducing FlashAttention results without a GPU
+
+| Claim | Published | Model (no GPU) | Within bounds? | Note |
+|---|---|---|---|---|
+| FA1 Fig.2: standard attention HBM R/W | 40.3 GB | 25.2 to 53.2 GB | yes | lower: Algorithm 0/3 as written; upper: scale, mask, softmax, dropout as separate kernels |
+| FA1 Fig.2: FlashAttention HBM R/W | 4.4 GB | 1.6 (compulsory) to 9.4 (Alg. 1+4, Bc=128) GB | yes | Alg. 1+4 without cache reuse: Bc=64: 18.0 GB, Bc=128: 9.4 GB, Bc=256: 5.1 GB, Bc=512: 3.0 GB |
+| FA1 Fig.2: standard attention is HBM-bound | 41.7 ms | >= 25.9 ms from HBM alone | yes | measured runtime implies 966 GB/s, 62% of the 1,555 GB/s peak |
+| FA1 Fig.2: FlashAttention is NOT HBM-bound | 7.3 ms | HBM alone needs only 2.8 ms | yes | the remaining time is compute and non-matmul work, which FA2 later attacks |
+| FA1 Thm. 2 / Fig.2 middle: HBM accesses fall as block size grows | monotone decrease, Theta(N^2 d^2 / M) | x1.91 from Bc 64->128, x1.84 from 128->256 | yes | halving passes over Q/O per doubling of Bc, approaching the 12-pass floor |
+| FA1 Fig.2: GFLOPs column | 66.6 / 75.2 GFLOPs | 275 GFLOPs for the forward matmuls alone (4 N^2 d per head) | n/a | not reconcilable from the text at the stated shape; not used in any check |
+| FA2 Fig.5: forward TFLOPs/s, d=64, non-causal | 178 to 193 (fig. text layer) | 156 (no overlap) to 312 (perfect overlap) | yes | bounds from tensor-core, FP32 and SFU work per score |
+| FA2 Sec.4: up to 230 TFLOPs/s (73% of 312) | 230 (73%) | d=128: 208 to 312 | yes | head dim of the headline is not stated; d=128 assumed (FA2 benchmarks d=64 and d=128) |
+| FA2: efficiency rises with head dimension | d=128 above d=64 in Fig. 5 | no-overlap bound 50% (d=64) -> 67% (d=128) | yes | non-matmul work per score is fixed while matmul work grows with d |
+| FA2 Sec.3.1: a non-matmul FLOP costs 16x a matmul FLOP | 16x (312 vs 19.5 TFLOPs/s) | 16.0x from datasheet; per-SM rates give 16x | yes |  |
+| FA2 Sec.4: 3-10x faster than standard attention | 3 to 10x | 3.3x to 7.7x (forward, seq 512-16k) | yes | standard = HBM-bound N^2 passes + ideal matmul time; FA2 at its measured d=64 rate |

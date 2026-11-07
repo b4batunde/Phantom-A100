@@ -1,0 +1,22 @@
+--- a/src/cuda-sim/instructions.cc	2026-11-05 20:19:36.983815216 -0700
++++ b/src/cuda-sim/instructions.cc	2026-11-05 20:19:36.999453223 -0700
+@@ -2054,6 +2054,19 @@
+ 
+   for (i = 0; i < 16; i++) {
+     for (j = 0; j < 16; j++) {
++      if (type == F32_TYPE) {
++        // FP32 accumulator (D is f32): tensor cores keep the dot product in FP32.
++        // The original code summed the 16 products in FP16, losing ~3 decimal digits.
++        float acc32 = 0.f;
++        for (k = 0; k < 16; k++)
++          acc32 += (float)matrix_a[i][k].f16 * (float)matrix_b[k][j].f16;
++        if (type2 == F16_TYPE)
++          acc32 += (float)matrix_c[i][j].f16;
++        else
++          acc32 += matrix_c[i][j].f32;
++        matrix_d[i][j].f32 = acc32;
++        continue;
++      }
+       for (k = 0; k < 16; k++) {
+         matrix_d[i][j].f16 =
+             matrix_d[i][j].f16 + matrix_a[i][k].f16 * matrix_b[k][j].f16;
