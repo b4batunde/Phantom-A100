@@ -125,6 +125,10 @@ def measure(a) -> dict:
         rec = {"status": status, "median_ms": med, "min_ms": mn, "ncu": None, "dropped_metrics": []}
         if want_prof and status == "PASS":
             pr = profile(exe, p.harness_spec(), wl.BH, wl.N, wl.causal)
+            # keep ncu's raw output, so the measurement can be re-parsed if the parser turns out wrong
+            os.makedirs(os.path.join(OUT, "ncu_raw"), exist_ok=True)
+            with open(os.path.join(OUT, "ncu_raw", p.key().replace("/", "_") + ".txt"), "w") as fh:
+                fh.write(pr.get("raw", pr.get("log", "")))
             rec["ncu_status"] = pr["status"]
             rec["dropped_metrics"] = pr["dropped_metrics"]
             rec["ncu_kernels"] = pr["kernels"]

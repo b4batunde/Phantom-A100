@@ -152,7 +152,7 @@ def profile(exe: str, spec: str, BH: int, N: int, causal: int, metrics: list[str
                 continue
         kernels = parse_ncu_csv(log)
         return {"status": "ok" if kernels else "error", "kernels": kernels, "dropped_metrics": dropped,
-                "log": "" if kernels else log[-2000:]}
+                "log": "" if kernels else log[-2000:], "raw": log}
     return {"status": "error", "kernels": [], "dropped_metrics": dropped, "log": ""}
 
 
