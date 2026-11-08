@@ -1,0 +1,138 @@
+{
+ "confidence": {
+  "redundant_global_traffic|tile_smem": [
+   2.0,
+   1.0
+  ],
+  "redundant_global_traffic|fuse": [
+   2.0,
+   1.0
+  ],
+  "materialized_intermediate|fuse": [
+   2.0,
+   1.0
+  ],
+  "cuda_core_math_bound|tensor_cores": [
+   2.0,
+   1.0
+  ],
+  "redundant_global_traffic|vectorize_fp16": [
+   2.0,
+   1.0
+  ],
+  "register_limited_occupancy|vectorize_fp16": [
+   2.0,
+   1.0
+  ],
+  "register_limited_occupancy|reg_cap_128": [
+   1.0,
+   1.0
+  ],
+  "latency_bound|reg_cap_128": [
+   1.0,
+   1.0
+  ],
+  "redundant_global_traffic|grow_br": [
+   1.0,
+   1.0
+  ],
+  "latency_bound|grow_bc": [
+   1.0,
+   1.0
+  ]
+ },
+ "signs": {
+  "fuse": {
+   "kernel_launches": [
+    "-"
+   ],
+   "l2_accesses": [
+    "-"
+   ],
+   "dram_sectors": [
+    "-"
+   ],
+   "regs": [
+    "+"
+   ],
+   "occupancy": [
+    "-"
+   ],
+   "cycles": [
+    "-"
+   ]
+  },
+  "tile_smem": {
+   "global_load_insn": [
+    "-"
+   ],
+   "l2_accesses": [
+    "-"
+   ],
+   "shmem_insn": [
+    "+"
+   ],
+   "kernel_launches": [
+    "0"
+   ],
+   "cycles": [
+    "-"
+   ]
+  },
+  "vectorize_fp16": {
+   "global_load_insn": [
+    "-"
+   ],
+   "l2_accesses": [
+    "-"
+   ],
+   "regs": [
+    "-"
+   ],
+   "occupancy": [
+    "+"
+   ],
+   "cycles": [
+    "-"
+   ]
+  },
+  "reg_cap_128": {
+   "regs": [
+    "-",
+    "-"
+   ],
+   "occupancy": [
+    "+",
+    "0"
+   ],
+   "cta_per_sm": [
+    "+",
+    "+"
+   ],
+   "cycles": [
+    "-",
+    "0"
+   ]
+  },
+  "tensor_cores": {
+   "thread_insn": [
+    "-"
+   ],
+   "warp_insn": [
+    "-"
+   ],
+   "regs": [
+    "-"
+   ],
+   "cycles": [
+    "-"
+   ]
+  },
+  "remove_reg_cap": {},
+  "grow_br": {},
+  "shrink_br": {},
+  "grow_bc": {},
+  "shrink_bc": {},
+  "double_buffer": {}
+ }
+}

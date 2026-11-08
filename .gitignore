@@ -6,3 +6,6 @@ __pycache__/
 results/*.ncu-rep
 results/*.nsys-rep
 .DS_Store
+sim/harness
+sim/harness_sm*
+results/autotune/logs/

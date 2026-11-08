@@ -1,0 +1,1310 @@
+{
+ "workload": "BH42_N128_c0",
+ "budget": 15,
+ "ground_truth": [
+  {
+   "point": "fused_tc",
+   "label": "fused_tc (v4 fused_tc)",
+   "cycles": 52659,
+   "status": "PASS",
+   "occupancy": 36.7,
+   "regs": 80,
+   "hw_regs": 80,
+   "hw_spill": 0,
+   "cta": 6,
+   "limiter": "regs",
+   "l2x": 2.12,
+   "ipf": 0.13,
+   "trusted": true
+  },
+  {
+   "point": "fused_vec/br128/bc64/r128",
+   "label": "fused_vec/br128/bc64/r128",
+   "cycles": 559186,
+   "status": "PASS",
+   "occupancy": 18.7,
+   "regs": 128,
+   "hw_regs": 128,
+   "hw_spill": 168,
+   "cta": 4,
+   "limiter": "regs",
+   "l2x": 1.44,
+   "ipf": 2.04,
+   "trusted": false
+  },
+  {
+   "point": "fused_vec/br128/bc64",
+   "label": "fused_vec/br128/bc64",
+   "cycles": 559326,
+   "status": "PASS",
+   "occupancy": 18.7,
+   "regs": 168,
+   "hw_regs": 168,
+   "hw_spill": 0,
+   "cta": 3,
+   "limiter": "regs",
+   "l2x": 1.44,
+   "ipf": 2.04,
+   "trusted": true
+  },
+  {
+   "point": "fused_vec/br128/bc32/r128",
+   "label": "fused_vec/br128/bc32/r128",
+   "cycles": 561541,
+   "status": "PASS",
+   "occupancy": 18.7,
+   "regs": 128,
+   "hw_regs": 128,
+   "hw_spill": 168,
+   "cta": 4,
+   "limiter": "regs",
+   "l2x": 1.44,
+   "ipf": 2.04,
+   "trusted": false
+  },
+  {
+   "point": "fused_vec/br128/bc32",
+   "label": "fused_vec/br128/bc32",
+   "cycles": 561725,
+   "status": "PASS",
+   "occupancy": 18.7,
+   "regs": 168,
+   "hw_regs": 168,
+   "hw_spill": 0,
+   "cta": 3,
+   "limiter": "regs",
+   "l2x": 1.44,
+   "ipf": 2.04,
+   "trusted": true
+  },
+  {
+   "point": "fused_vec/br64/bc64/r128",
+   "label": "fused_vec/br64/bc64/r128",
+   "cycles": 563691,
+   "status": "PASS",
+   "occupancy": 18.7,
+   "regs": 128,
+   "hw_regs": 128,
+   "hw_spill": 168,
+   "cta": 8,
+   "limiter": "regs",
+   "l2x": 1.94,
+   "ipf": 2.05,
+   "trusted": false
+  },
+  {
+   "point": "fused_vec/br64/bc64",
+   "label": "fused_vec/br64/bc64",
+   "cycles": 563975,
+   "status": "PASS",
+   "occupancy": 18.7,
+   "regs": 168,
+   "hw_regs": 168,
+   "hw_spill": 0,
+   "cta": 6,
+   "limiter": "regs",
+   "l2x": 1.94,
+   "ipf": 2.05,
+   "trusted": true
+  },
+  {
+   "point": "fused_vec/br64/bc32/r128",
+   "label": "fused_vec/br64/bc32/r128",
+   "cycles": 565540,
+   "status": "PASS",
+   "occupancy": 18.7,
+   "regs": 128,
+   "hw_regs": 128,
+   "hw_spill": 168,
+   "cta": 8,
+   "limiter": "regs",
+   "l2x": 1.94,
+   "ipf": 2.05,
+   "trusted": false
+  },
+  {
+   "point": "fused_vec/br64/bc32",
+   "label": "fused_vec/br64/bc32 (v3.1 fused_vec)",
+   "cycles": 565972,
+   "status": "PASS",
+   "occupancy": 18.7,
+   "regs": 168,
+   "hw_regs": 168,
+   "hw_spill": 0,
+   "cta": 6,
+   "limiter": "regs",
+   "l2x": 1.94,
+   "ipf": 2.05,
+   "trusted": true
+  },
+  {
+   "point": "fused/br128/bc32/r128",
+   "label": "fused/br128/bc32/r128",
+   "cycles": 686124,
+   "status": "PASS",
+   "occupancy": 18.6,
+   "regs": 128,
+   "hw_regs": 128,
+   "hw_spill": 188,
+   "cta": 4,
+   "limiter": "regs",
+   "l2x": 8.5,
+   "ipf": 1.24,
+   "trusted": false
+  },
+  {
+   "point": "fused/br64/bc32/r128",
+   "label": "fused/br64/bc32/r128",
+   "cycles": 732923,
+   "status": "PASS",
+   "occupancy": 18.6,
+   "regs": 128,
+   "hw_regs": 128,
+   "hw_spill": 188,
+   "cta": 6,
+   "limiter": "shmem",
+   "l2x": 9.0,
+   "ipf": 1.31,
+   "trusted": false
+  },
+  {
+   "point": "tiled",
+   "label": "tiled (v2 tiled)",
+   "cycles": 855959,
+   "status": "PASS",
+   "occupancy": 51.8,
+   "regs": 44,
+   "hw_regs": 32,
+   "hw_spill": 0,
+   "cta": 1,
+   "limiter": "regs",
+   "l2x": 8.23,
+   "ipf": 2.57,
+   "trusted": true
+  },
+  {
+   "point": "fused/br128/bc32",
+   "label": "fused/br128/bc32",
+   "cycles": 1333912,
+   "status": "PASS",
+   "occupancy": 11.4,
+   "regs": 242,
+   "hw_regs": 168,
+   "hw_spill": 0,
+   "cta": 2,
+   "limiter": "regs",
+   "l2x": 8.16,
+   "ipf": 1.24,
+   "trusted": true
+  },
+  {
+   "point": "fused/br64/bc32",
+   "label": "fused/br64/bc32 (v3 fused)",
+   "cycles": 1410914,
+   "status": "PASS",
+   "occupancy": 9.8,
+   "regs": 242,
+   "hw_regs": 168,
+   "hw_spill": 0,
+   "cta": 4,
+   "limiter": "regs",
+   "l2x": 7.77,
+   "ipf": 1.32,
+   "trusted": true
+  },
+  {
+   "point": "naive",
+   "label": "naive (v1 naive)",
+   "cycles": 3049245,
+   "status": "PASS",
+   "occupancy": 47.3,
+   "regs": 55,
+   "hw_regs": 31,
+   "hw_spill": 0,
+   "cta": 4,
+   "limiter": "regs",
+   "l2x": 17.86,
+   "ipf": 3.67,
+   "trusted": true
+  }
+ ],
+ "optimum": {
+  "point": "fused_tc",
+  "label": "fused_tc (v4 fused_tc)",
+  "cycles": 52659,
+  "status": "PASS",
+  "occupancy": 36.7,
+  "regs": 80,
+  "hw_regs": 80,
+  "hw_spill": 0,
+  "cta": 6,
+  "limiter": "regs",
+  "l2x": 2.12,
+  "ipf": 0.13,
+  "trusted": true
+ },
+ "target_cycles": 55291.950000000004,
+ "rediscovery": {
+  "strategy": "counter_guided",
+  "start": "naive",
+  "evaluated": [
+   [
+    "naive",
+    3049245,
+    true
+   ],
+   [
+    "fused/br64/bc32",
+    1410914,
+    true
+   ],
+   [
+    "tiled",
+    855959,
+    true
+   ],
+   [
+    "fused_vec/br64/bc32",
+    565972,
+    true
+   ],
+   [
+    "fused/br64/bc32/r128",
+    732923,
+    false
+   ],
+   [
+    "fused_tc",
+    52659,
+    true
+   ],
+   [
+    "fused_vec/br64/bc32/r128",
+    565540,
+    false
+   ]
+  ],
+  "best_curve": [
+   3049245,
+   1410914,
+   855959,
+   565972,
+   565972,
+   52659,
+   52659
+  ],
+  "path": [
+   "naive",
+   "tiled",
+   "fused/br64/bc32",
+   "fused_vec/br64/bc32",
+   "fused_tc"
+  ],
+  "outcomes": [
+   {
+    "step": 1,
+    "transform": "fuse",
+    "parent": "naive",
+    "child": "fused/br64/bc32",
+    "targeted": [
+     "redundant_global_traffic",
+     "materialized_intermediate"
+    ],
+    "score": 5.208,
+    "predicted": {
+     "kernel_launches": "-",
+     "l2_accesses": "-",
+     "dram_sectors": "-",
+     "regs": "+",
+     "occupancy": "-",
+     "cycles": "-"
+    },
+    "observed": {
+     "kernel_launches": -0.6667,
+     "l2_accesses": -0.5651,
+     "dram_sectors": -1.0,
+     "regs": 3.4,
+     "occupancy": -0.7935,
+     "cycles": -0.5373
+    },
+    "matches": {
+     "kernel_launches": true,
+     "l2_accesses": true,
+     "dram_sectors": true,
+     "regs": true,
+     "occupancy": true
+    },
+    "agreement": 1.0,
+    "speedup": 2.1612,
+    "verdict": "confirmed",
+    "trusted": true,
+    "flags": [],
+    "correct": true
+   },
+   {
+    "step": 1,
+    "transform": "tile_smem",
+    "parent": "naive",
+    "child": "tiled",
+    "targeted": [
+     "redundant_global_traffic"
+    ],
+    "score": 2.976,
+    "predicted": {
+     "global_load_insn": "-",
+     "l2_accesses": "-",
+     "shmem_insn": "+",
+     "kernel_launches": "0",
+     "cycles": "-"
+    },
+    "observed": {
+     "global_load_insn": -0.9614,
+     "l2_accesses": -0.5389,
+     "shmem_insn": Infinity,
+     "kernel_launches": 0.0,
+     "cycles": -0.7193
+    },
+    "matches": {
+     "global_load_insn": true,
+     "l2_accesses": true,
+     "shmem_insn": true,
+     "kernel_launches": true
+    },
+    "agreement": 1.0,
+    "speedup": 3.5624,
+    "verdict": "confirmed",
+    "trusted": true,
+    "flags": [],
+    "correct": true
+   },
+   {
+    "step": 3,
+    "transform": "vectorize_fp16",
+    "parent": "fused/br64/bc32",
+    "child": "fused_vec/br64/bc32",
+    "targeted": [
+     "redundant_global_traffic",
+     "register_limited_occupancy"
+    ],
+    "score": 2.575,
+    "predicted": {
+     "global_load_insn": "-",
+     "l2_accesses": "-",
+     "regs": "-",
+     "occupancy": "+",
+     "cycles": "-"
+    },
+    "observed": {
+     "global_load_insn": -0.875,
+     "l2_accesses": -0.7505,
+     "regs": -0.3058,
+     "occupancy": 0.9165,
+     "cycles": -0.5989
+    },
+    "matches": {
+     "global_load_insn": true,
+     "l2_accesses": true,
+     "regs": true,
+     "occupancy": true
+    },
+    "agreement": 1.0,
+    "speedup": 2.4929,
+    "verdict": "confirmed",
+    "trusted": true,
+    "flags": [],
+    "correct": true
+   },
+   {
+    "step": 3,
+    "transform": "reg_cap_128",
+    "parent": "fused/br64/bc32",
+    "child": "fused/br64/bc32/r128",
+    "targeted": [
+     "register_limited_occupancy",
+     "latency_bound"
+    ],
+    "score": 2.054,
+    "predicted": {
+     "regs": "-",
+     "occupancy": "+",
+     "cta_per_sm": "+",
+     "cycles": "-"
+    },
+    "observed": {
+     "regs": -0.4711,
+     "occupancy": 0.9106,
+     "cta_per_sm": 0.5,
+     "cycles": -0.4805
+    },
+    "matches": {
+     "regs": true,
+     "occupancy": true,
+     "cta_per_sm": true
+    },
+    "agreement": 1.0,
+    "speedup": 1.9251,
+    "verdict": "confirmed",
+    "trusted": false,
+    "flags": [
+     "ptxas spills 188 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+    ],
+    "correct": true
+   },
+   {
+    "step": 4,
+    "transform": "tensor_cores",
+    "parent": "fused_vec/br64/bc32",
+    "child": "fused_tc",
+    "targeted": [
+     "cuda_core_math_bound"
+    ],
+    "score": 2.053,
+    "predicted": {
+     "thread_insn": "-",
+     "warp_insn": "-",
+     "regs": "-",
+     "cycles": "-"
+    },
+    "observed": {
+     "thread_insn": -0.9362,
+     "warp_insn": -0.9319,
+     "regs": -0.5238,
+     "cycles": -0.907
+    },
+    "matches": {
+     "thread_insn": true,
+     "warp_insn": true,
+     "regs": true
+    },
+    "agreement": 1.0,
+    "speedup": 10.7479,
+    "verdict": "confirmed",
+    "trusted": true,
+    "flags": [],
+    "correct": true
+   },
+   {
+    "step": 4,
+    "transform": "reg_cap_128",
+    "parent": "fused_vec/br64/bc32",
+    "child": "fused_vec/br64/bc32/r128",
+    "targeted": [
+     "register_limited_occupancy",
+     "latency_bound"
+    ],
+    "score": 1.302,
+    "predicted": {
+     "regs": "-",
+     "occupancy": "+",
+     "cta_per_sm": "+",
+     "cycles": "-"
+    },
+    "observed": {
+     "regs": -0.2381,
+     "occupancy": 0.0003,
+     "cta_per_sm": 0.3333,
+     "cycles": -0.0008
+    },
+    "matches": {
+     "regs": true,
+     "occupancy": false,
+     "cta_per_sm": true
+    },
+    "agreement": 0.667,
+    "speedup": 1.0008,
+    "verdict": "mechanism_no_gain",
+    "trusted": false,
+    "flags": [
+     "ptxas spills 168 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+    ],
+    "correct": true
+   }
+  ],
+  "diagnoses": [
+   {
+    "step": 1,
+    "incumbent": "naive",
+    "cycles": 3049245,
+    "bottlenecks": [
+     "cuda_core_math_bound (severity 7.34): 3.67 thread instructions per FLOP (tensor-core kernels are < 0.2)",
+     "redundant_global_traffic (severity 5.95): L2 traffic 17.9x compulsory",
+     "materialized_intermediate (severity 4.46): 3 launches, L2 traffic 17.9x compulsory"
+    ]
+   },
+   {
+    "step": 2,
+    "incumbent": "tiled",
+    "cycles": 855959,
+    "bottlenecks": [
+     "cuda_core_math_bound (severity 5.14): 2.57 thread instructions per FLOP (tensor-core kernels are < 0.2)",
+     "redundant_global_traffic (severity 2.74): L2 traffic 8.2x compulsory",
+     "materialized_intermediate (severity 2.06): 3 launches, L2 traffic 8.2x compulsory"
+    ],
+    "unlock": "no trusted improvement; blocked bottleneck(s) cuda_core_math_bound have no remedy from tiled. Taking non-improving `fuse` -> fused/br64/bc32 (0.61x) because it makes tensor_cores applicable"
+   },
+   {
+    "step": 3,
+    "incumbent": "fused/br64/bc32",
+    "cycles": 1410914,
+    "bottlenecks": [
+     "cuda_core_math_bound (severity 2.63): 1.32 thread instructions per FLOP (tensor-core kernels are < 0.2)",
+     "redundant_global_traffic (severity 2.59): L2 traffic 7.8x compulsory",
+     "register_limited_occupancy (severity 2.56): 4 blocks/SM limited by registers (242 regs/thread), occupancy 9.8%",
+     "latency_bound (severity 1.55): 77% of scheduler cycles stalled on dependencies, occupancy 9.8%"
+    ]
+   },
+   {
+    "step": 4,
+    "incumbent": "fused_vec/br64/bc32",
+    "cycles": 565972,
+    "bottlenecks": [
+     "cuda_core_math_bound (severity 4.11): 2.05 thread instructions per FLOP (tensor-core kernels are < 0.2)",
+     "register_limited_occupancy (severity 1.34): 6 blocks/SM limited by registers (168 regs/thread), occupancy 18.7%",
+     "latency_bound (severity 1.27): 63% of scheduler cycles stalled on dependencies, occupancy 18.7%"
+    ]
+   },
+   {
+    "step": 5,
+    "incumbent": "fused_tc",
+    "cycles": 52659,
+    "bottlenecks": [
+     "smem_bank_conflicts (severity 1.48): 0.07 conflicts per shared-memory instruction"
+    ]
+   }
+  ],
+  "hardware_candidates": [
+   {
+    "from": "fused_vec/br64/bc32",
+    "transform": "double_buffer",
+    "point": "fused_vec/br64/bc32/db",
+    "targets": [
+     "latency_bound"
+    ],
+    "why_not_simulated": [
+     "cp.async double buffering is not implemented in GPGPU-Sim (the sm_75 PTX path falls back to synchronous copies)"
+    ]
+   }
+  ],
+  "stop_reason": "step 5: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+ },
+ "ablation_no_unlock": {
+  "strategy": "counter_guided",
+  "start": "naive",
+  "evaluated": [
+   [
+    "naive",
+    3049245,
+    true
+   ],
+   [
+    "fused/br64/bc32",
+    1410914,
+    true
+   ],
+   [
+    "tiled",
+    855959,
+    true
+   ]
+  ],
+  "best_curve": [
+   3049245,
+   1410914,
+   855959
+  ],
+  "path": [
+   "naive",
+   "tiled"
+  ],
+  "outcomes": [
+   {
+    "step": 1,
+    "transform": "fuse",
+    "parent": "naive",
+    "child": "fused/br64/bc32",
+    "targeted": [
+     "redundant_global_traffic",
+     "materialized_intermediate"
+    ],
+    "score": 5.208,
+    "predicted": {
+     "kernel_launches": "-",
+     "l2_accesses": "-",
+     "dram_sectors": "-",
+     "regs": "+",
+     "occupancy": "-",
+     "cycles": "-"
+    },
+    "observed": {
+     "kernel_launches": -0.6667,
+     "l2_accesses": -0.5651,
+     "dram_sectors": -1.0,
+     "regs": 3.4,
+     "occupancy": -0.7935,
+     "cycles": -0.5373
+    },
+    "matches": {
+     "kernel_launches": true,
+     "l2_accesses": true,
+     "dram_sectors": true,
+     "regs": true,
+     "occupancy": true
+    },
+    "agreement": 1.0,
+    "speedup": 2.1612,
+    "verdict": "confirmed",
+    "trusted": true,
+    "flags": [],
+    "correct": true
+   },
+   {
+    "step": 1,
+    "transform": "tile_smem",
+    "parent": "naive",
+    "child": "tiled",
+    "targeted": [
+     "redundant_global_traffic"
+    ],
+    "score": 2.976,
+    "predicted": {
+     "global_load_insn": "-",
+     "l2_accesses": "-",
+     "shmem_insn": "+",
+     "kernel_launches": "0",
+     "cycles": "-"
+    },
+    "observed": {
+     "global_load_insn": -0.9614,
+     "l2_accesses": -0.5389,
+     "shmem_insn": Infinity,
+     "kernel_launches": 0.0,
+     "cycles": -0.7193
+    },
+    "matches": {
+     "global_load_insn": true,
+     "l2_accesses": true,
+     "shmem_insn": true,
+     "kernel_launches": true
+    },
+    "agreement": 1.0,
+    "speedup": 3.5624,
+    "verdict": "confirmed",
+    "trusted": true,
+    "flags": [],
+    "correct": true
+   }
+  ],
+  "diagnoses": [
+   {
+    "step": 1,
+    "incumbent": "naive",
+    "cycles": 3049245,
+    "bottlenecks": [
+     "cuda_core_math_bound (severity 7.34): 3.67 thread instructions per FLOP (tensor-core kernels are < 0.2)",
+     "redundant_global_traffic (severity 5.95): L2 traffic 17.9x compulsory",
+     "materialized_intermediate (severity 4.46): 3 launches, L2 traffic 17.9x compulsory"
+    ]
+   },
+   {
+    "step": 2,
+    "incumbent": "tiled",
+    "cycles": 855959,
+    "bottlenecks": [
+     "cuda_core_math_bound (severity 5.14): 2.57 thread instructions per FLOP (tensor-core kernels are < 0.2)",
+     "redundant_global_traffic (severity 2.74): L2 traffic 8.2x compulsory",
+     "materialized_intermediate (severity 2.06): 3 launches, L2 traffic 8.2x compulsory"
+    ]
+   }
+  ],
+  "hardware_candidates": [],
+  "stop_reason": "step 2: no untried transformation in the menu targets the diagnosed bottlenecks of tiled"
+ },
+ "robustness": [
+  {
+   "start": "fused/br64/bc32",
+   "sims": 5,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "fused/br64/bc32",
+    "fused_vec/br64/bc32",
+    "fused_tc"
+   ],
+   "stop": "step 3: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "fused/br64/bc32/r128",
+   "sims": 5,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "fused/br64/bc32/r128",
+    "fused_tc"
+   ],
+   "stop": "step 2: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "fused/br128/bc32",
+   "sims": 5,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "fused/br128/bc32",
+    "fused_vec/br128/bc32",
+    "fused_tc"
+   ],
+   "stop": "step 3: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "fused/br128/bc32/r128",
+   "sims": 4,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "fused/br128/bc32/r128",
+    "fused_tc"
+   ],
+   "stop": "step 2: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "fused_tc",
+   "sims": 1,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "fused_tc"
+   ],
+   "stop": "step 1: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "fused_vec/br64/bc32",
+   "sims": 3,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "fused_vec/br64/bc32",
+    "fused_tc"
+   ],
+   "stop": "step 2: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "fused_vec/br64/bc32/r128",
+   "sims": 3,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "fused_vec/br64/bc32/r128",
+    "fused_tc"
+   ],
+   "stop": "step 2: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "fused_vec/br64/bc64",
+   "sims": 3,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "fused_vec/br64/bc64",
+    "fused_tc"
+   ],
+   "stop": "step 2: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "fused_vec/br64/bc64/r128",
+   "sims": 3,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "fused_vec/br64/bc64/r128",
+    "fused_tc"
+   ],
+   "stop": "step 2: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "fused_vec/br128/bc32",
+   "sims": 3,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "fused_vec/br128/bc32",
+    "fused_tc"
+   ],
+   "stop": "step 2: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "fused_vec/br128/bc32/r128",
+   "sims": 3,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "fused_vec/br128/bc32/r128",
+    "fused_tc"
+   ],
+   "stop": "step 2: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "fused_vec/br128/bc64",
+   "sims": 3,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "fused_vec/br128/bc64",
+    "fused_tc"
+   ],
+   "stop": "step 2: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "fused_vec/br128/bc64/r128",
+   "sims": 3,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "fused_vec/br128/bc64/r128",
+    "fused_tc"
+   ],
+   "stop": "step 2: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "naive",
+   "sims": 7,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "naive",
+    "tiled",
+    "fused/br64/bc32",
+    "fused_vec/br64/bc32",
+    "fused_tc"
+   ],
+   "stop": "step 5: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  },
+  {
+   "start": "tiled",
+   "sims": 6,
+   "best": "fused_tc",
+   "best_cycles": 52659,
+   "within_5pct": true,
+   "path": [
+    "tiled",
+    "fused/br64/bc32",
+    "fused_vec/br64/bc32",
+    "fused_tc"
+   ],
+   "stop": "step 4: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc"
+  }
+ ],
+ "budget_comparison": {
+  "counter_guided": {
+   "p_reach": 1.0,
+   "mean_sims": 6,
+   "median_sims": 6,
+   "final_mean_cycles": 52659,
+   "curve_mean": [
+    3049245,
+    1410914,
+    855959,
+    565972,
+    565972,
+    52659,
+    52659,
+    52659,
+    52659,
+    52659,
+    52659,
+    52659,
+    52659,
+    52659,
+    52659
+   ],
+   "speedup_curve_mean": [
+    1.0,
+    2.161184168560238,
+    3.562372730469567,
+    5.387625182871237,
+    5.387625182871237,
+    57.90548624166809,
+    57.90548624166809,
+    57.90548624166809,
+    57.90548624166809,
+    57.90548624166809,
+    57.90548624166809,
+    57.90548624166809,
+    57.90548624166809,
+    57.90548624166809,
+    57.90548624166809
+   ]
+  },
+  "unguided_local": {
+   "p_reach": 0.508,
+   "mean_sims": 5.090551181102362,
+   "median_sims": 5.0,
+   "final_mean_cycles": 447882.6,
+   "curve_mean": [
+    3049245,
+    1137876.14,
+    875078.974,
+    672089.586,
+    555460.798,
+    507898.716,
+    468182.866,
+    452949.27,
+    447882.6,
+    447882.6,
+    447882.6,
+    447882.6,
+    447882.6,
+    447882.6,
+    447882.6
+   ],
+   "speedup_curve_mean": [
+    1.0,
+    2.850568941019628,
+    8.783676393636675,
+    15.737399333350883,
+    20.850970477403063,
+    24.976895364608666,
+    29.070194658240368,
+    30.64413594971623,
+    31.16867439415842,
+    31.16867439415842,
+    31.16867439415842,
+    31.16867439415842,
+    31.16867439415842,
+    31.16867439415842,
+    31.16867439415842
+   ]
+  },
+  "random": {
+   "p_reach": 1.0,
+   "mean_sims": 8.478,
+   "median_sims": 9.0,
+   "final_mean_cycles": 52659,
+   "curve_mean": [
+    3049245,
+    1680100.35,
+    1046637.92,
+    710525.5,
+    501926.986,
+    408808.246,
+    359878.378,
+    321567.596,
+    277357.282,
+    228875.33,
+    198755.132,
+    149030.094,
+    125633.442,
+    90152.358,
+    52659
+   ],
+   "speedup_curve_mean": [
+    1.0,
+    7.714436728569195,
+    11.841648652845489,
+    15.721050295078841,
+    20.644085366092735,
+    23.975351363970987,
+    27.40855775965567,
+    30.796126939100187,
+    34.81264191629548,
+    39.749613488476285,
+    42.7970723808588,
+    47.938244365986336,
+    50.35199294535086,
+    54.02390175279589,
+    57.90548624166809
+   ]
+  }
+ },
+ "signature_audit": {
+  "tile_smem": {
+   "global_load_insn": [
+    "-",
+    "-",
+    "holds"
+   ],
+   "l2_accesses": [
+    "-",
+    "-",
+    "holds"
+   ],
+   "shmem_insn": [
+    "+",
+    "+",
+    "holds"
+   ],
+   "kernel_launches": [
+    "0",
+    "0",
+    "holds"
+   ],
+   "cycles": [
+    "-",
+    "-",
+    "holds"
+   ]
+  },
+  "fuse": {
+   "kernel_launches": [
+    "-",
+    "-",
+    "holds"
+   ],
+   "l2_accesses": [
+    "-",
+    "-",
+    "holds"
+   ],
+   "dram_sectors": [
+    "-",
+    "-",
+    "holds"
+   ],
+   "regs": [
+    "+",
+    "+",
+    "holds"
+   ],
+   "occupancy": [
+    "-",
+    "-",
+    "holds"
+   ],
+   "cycles": [
+    "-",
+    "-",
+    "holds"
+   ]
+  },
+  "vectorize_fp16": {
+   "global_load_insn": [
+    "-",
+    "-",
+    "holds"
+   ],
+   "l2_accesses": [
+    "-",
+    "-",
+    "holds"
+   ],
+   "regs": [
+    "-",
+    "-",
+    "holds"
+   ],
+   "occupancy": [
+    "+",
+    "+",
+    "holds"
+   ],
+   "cycles": [
+    "-",
+    "-",
+    "holds"
+   ]
+  },
+  "tensor_cores": {
+   "thread_insn": [
+    "-",
+    "-",
+    "holds"
+   ],
+   "warp_insn": [
+    "-",
+    "-",
+    "holds"
+   ],
+   "regs": [
+    "-",
+    "-",
+    "holds"
+   ],
+   "cycles": [
+    "-",
+    "-",
+    "holds"
+   ]
+  },
+  "reg_cap_128": {
+   "regs": [
+    "-",
+    "--",
+    "holds"
+   ],
+   "occupancy": [
+    "+",
+    "+0",
+    "wrong"
+   ],
+   "cta_per_sm": [
+    "+",
+    "++",
+    "holds"
+   ],
+   "cycles": [
+    "-",
+    "-0",
+    "mostly holds"
+   ]
+  },
+  "remove_reg_cap": {},
+  "grow_br": {},
+  "shrink_br": {},
+  "grow_bc": {},
+  "shrink_bc": {},
+  "double_buffer": {}
+ },
+ "beliefs": {
+  "confidence": {
+   "redundant_global_traffic|tile_smem": [
+    2.0,
+    1.0
+   ],
+   "redundant_global_traffic|fuse": [
+    2.0,
+    1.0
+   ],
+   "materialized_intermediate|fuse": [
+    2.0,
+    1.0
+   ],
+   "cuda_core_math_bound|tensor_cores": [
+    2.0,
+    1.0
+   ],
+   "redundant_global_traffic|vectorize_fp16": [
+    2.0,
+    1.0
+   ],
+   "register_limited_occupancy|vectorize_fp16": [
+    2.0,
+    1.0
+   ],
+   "register_limited_occupancy|reg_cap_128": [
+    1.0,
+    1.0
+   ],
+   "latency_bound|reg_cap_128": [
+    1.0,
+    1.0
+   ],
+   "redundant_global_traffic|grow_br": [
+    1.0,
+    1.0
+   ],
+   "latency_bound|grow_bc": [
+    1.0,
+    1.0
+   ]
+  },
+  "signs": {
+   "fuse": {
+    "kernel_launches": [
+     "-"
+    ],
+    "l2_accesses": [
+     "-"
+    ],
+    "dram_sectors": [
+     "-"
+    ],
+    "regs": [
+     "+"
+    ],
+    "occupancy": [
+     "-"
+    ],
+    "cycles": [
+     "-"
+    ]
+   },
+   "tile_smem": {
+    "global_load_insn": [
+     "-"
+    ],
+    "l2_accesses": [
+     "-"
+    ],
+    "shmem_insn": [
+     "+"
+    ],
+    "kernel_launches": [
+     "0"
+    ],
+    "cycles": [
+     "-"
+    ]
+   },
+   "vectorize_fp16": {
+    "global_load_insn": [
+     "-"
+    ],
+    "l2_accesses": [
+     "-"
+    ],
+    "regs": [
+     "-"
+    ],
+    "occupancy": [
+     "+"
+    ],
+    "cycles": [
+     "-"
+    ]
+   },
+   "reg_cap_128": {
+    "regs": [
+     "-",
+     "-"
+    ],
+    "occupancy": [
+     "+",
+     "0"
+    ],
+    "cta_per_sm": [
+     "+",
+     "+"
+    ],
+    "cycles": [
+     "-",
+     "0"
+    ]
+   },
+   "tensor_cores": {
+    "thread_insn": [
+     "-"
+    ],
+    "warp_insn": [
+     "-"
+    ],
+    "regs": [
+     "-"
+    ],
+    "cycles": [
+     "-"
+    ]
+   },
+   "remove_reg_cap": {},
+   "grow_br": {},
+   "shrink_br": {},
+   "grow_bc": {},
+   "shrink_bc": {},
+   "double_buffer": {}
+  }
+ },
+ "seeds": 500,
+ "beam": 2
+}

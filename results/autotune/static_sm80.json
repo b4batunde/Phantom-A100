@@ -1,0 +1,164 @@
+{
+ "_ZN4attn2tc12fused_tc_fwdEPK6__halfS3_S3_PS1_ifb": {
+  "regs": 80,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn8pv_tiledI6__halfEEvPKfPKT_PS4_iib": {
+  "regs": 32,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn12scores_tiledI6__halfEEvPKT_S4_Pfiifb": {
+  "regs": 32,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn8pv_naiveI6__halfEEvPKfPKT_PS4_ii": {
+  "regs": 32,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn12scores_naiveI6__halfEEvPKT_S4_Pfiifb": {
+  "regs": 31,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn15fused_tuned_fwdILi128ELi64ELb0ELi4EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 128,
+  "spill_stores": 168,
+  "spill_loads": 172,
+  "stack": 160
+ },
+ "_ZN4attn15fused_tuned_fwdILi128ELi64ELb1ELi4EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 128,
+  "spill_stores": 132,
+  "spill_loads": 128,
+  "stack": 112
+ },
+ "_ZN4attn15fused_tuned_fwdILi128ELi64ELb0ELi0EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 168,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn15fused_tuned_fwdILi128ELi64ELb1ELi0EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 161,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn15fused_tuned_fwdILi128ELi32ELb0ELi4EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 128,
+  "spill_stores": 168,
+  "spill_loads": 172,
+  "stack": 160
+ },
+ "_ZN4attn15fused_tuned_fwdILi128ELi32ELb1ELi4EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 128,
+  "spill_stores": 132,
+  "spill_loads": 128,
+  "stack": 112
+ },
+ "_ZN4attn15fused_tuned_fwdILi128ELi32ELb0ELi0EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 168,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn15fused_tuned_fwdILi128ELi32ELb1ELi0EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 161,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn15fused_tuned_fwdILi64ELi64ELb0ELi8EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 128,
+  "spill_stores": 168,
+  "spill_loads": 172,
+  "stack": 160
+ },
+ "_ZN4attn15fused_tuned_fwdILi64ELi64ELb1ELi8EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 128,
+  "spill_stores": 132,
+  "spill_loads": 128,
+  "stack": 112
+ },
+ "_ZN4attn15fused_tuned_fwdILi64ELi64ELb0ELi0EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 168,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn15fused_tuned_fwdILi64ELi64ELb1ELi0EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 161,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn15fused_tuned_fwdILi64ELi32ELb0ELi8EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 128,
+  "spill_stores": 168,
+  "spill_loads": 172,
+  "stack": 160
+ },
+ "_ZN4attn15fused_tuned_fwdILi64ELi32ELb1ELi8EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 128,
+  "spill_stores": 132,
+  "spill_loads": 128,
+  "stack": 112
+ },
+ "_ZN4attn15fused_tuned_fwdILi64ELi32ELb0ELi0EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 168,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn15fused_tuned_fwdILi64ELi32ELb1ELi0EEEvPK6__halfS3_S3_PS1_ifb": {
+  "regs": 161,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn9fused_fwdI6__halfLi64ELi128ELi32ELi4EEEvPKT_S4_S4_PS2_ifb": {
+  "regs": 128,
+  "spill_stores": 188,
+  "spill_loads": 192,
+  "stack": 144
+ },
+ "_ZN4attn9fused_fwdI6__halfLi64ELi128ELi32ELi0EEEvPKT_S4_S4_PS2_ifb": {
+  "regs": 168,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn9fused_fwdI6__halfLi64ELi64ELi32ELi8EEEvPKT_S4_S4_PS2_ifb": {
+  "regs": 128,
+  "spill_stores": 188,
+  "spill_loads": 192,
+  "stack": 144
+ },
+ "_ZN4attn9fused_fwdI6__halfLi64ELi64ELi32ELi0EEEvPKT_S4_S4_PS2_ifb": {
+  "regs": 168,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn12softmax_warpEPfi": {
+  "regs": 20,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ },
+ "_ZN4attn13softmax_naiveEPfi": {
+  "regs": 30,
+  "spill_stores": 0,
+  "spill_loads": 0,
+  "stack": 0
+ }
+}

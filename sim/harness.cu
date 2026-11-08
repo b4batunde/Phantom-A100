@@ -2,12 +2,17 @@
 // GPGPU-Sim cycle-level GPU simulator (or on a real GPU: the same binary works on both).
 //
 //   ./harness <kernel> <BH> <N> [causal=0] [seed=1]
-//   kernel: naive | tiled | fused | fused_vec | fused_db | fused_tc | fused_tuned:<br>:<bc>:<db>
+//   kernel: naive | tiled | fused | fused_vec | fused_db | fused_tc | fused_tuned:<br>:<bc>:<db>[:<maxreg>]
+//           | fused_cfg:<br>:<maxreg>          (v3 at another query tile and/or register cap; autotune/)
+//
+// HARNESS_ITERS=<n> (real GPU only): after the correctness check, time n launches with CUDA events
+// and print  TIME kernel=... median_ms=... min_ms=...  (used by autotune/validate_hw.py).
 //
 // Prints one machine-readable line:
 //   RESULT kernel=... BH=... N=... causal=... max_abs_err=... status=PASS|FAIL
 // The simulator writes cycle counts, DRAM traffic and occupancy to its own log; sim/run_sim.py
 // parses both.
+#include <algorithm>
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
@@ -91,26 +96,41 @@ int main(int argc, char** argv) {
   CK(cudaMemcpy(v, hv.data(), n * sizeof(__half), cudaMemcpyHostToDevice));
   CK(cudaMemset(o, 0, n * sizeof(__half)));
 
-  cudaError_t err;
-  if (name == "naive" || name == "tiled") {
-    CK(cudaMalloc(&S, (size_t)BH * N * N * sizeof(float)));
-    err = name == "naive" ? attn::launch_naive<__half>(q, k, v, o, S, BH, N, d, causal, 0)
-                          : attn::launch_tiled<__half>(q, k, v, o, S, BH, N, d, causal, 0);
-  } else if (name == "fused") {
-    err = attn::launch_fused<__half>(q, k, v, o, BH, N, causal, 0);
-  } else if (name == "fused_vec" || name == "fused_db") {
-    err = attn::launch_fused_tuned(q, k, v, o, BH, N, causal, name == "fused_db", 64, 32, 0);
-  } else if (name.rfind("fused_tuned:", 0) == 0) {
-    int br = 64, bc = 32, db = 0;
-    std::sscanf(name.c_str(), "fused_tuned:%d:%d:%d", &br, &bc, &db);
-    err = attn::launch_fused_tuned(q, k, v, o, BH, N, causal, db != 0, br, bc, 0);
-  } else if (name == "fused_tc") {
-    err = attn::launch_fused_tc(q, k, v, o, BH, N, causal, 0);
-  } else {
+  // One launch of the selected kernel (also reused by the timing loop below).
+  auto launch = [&]() -> cudaError_t {
+    if (name == "naive" || name == "tiled") {
+      return name == "naive" ? attn::launch_naive<__half>(q, k, v, o, S, BH, N, d, causal, 0)
+                             : attn::launch_tiled<__half>(q, k, v, o, S, BH, N, d, causal, 0);
+    } else if (name == "fused") {
+      return attn::launch_fused<__half>(q, k, v, o, BH, N, causal, 0);
+    } else if (name == "fused_vec" || name == "fused_db") {
+      return attn::launch_fused_tuned(q, k, v, o, BH, N, causal, name == "fused_db", 64, 32, 0);
+    } else if (name.rfind("fused_tuned:", 0) == 0) {
+      int br = 64, bc = 32, db = 0, mr = 0;
+      std::sscanf(name.c_str(), "fused_tuned:%d:%d:%d:%d", &br, &bc, &db, &mr);
+      return attn::launch_fused_tuned(q, k, v, o, BH, N, causal, db != 0, br, bc, 0, mr);
+    } else if (name.rfind("fused_cfg:", 0) == 0) {
+      int br = 64, mr = 0;
+      std::sscanf(name.c_str(), "fused_cfg:%d:%d", &br, &mr);
+      return attn::launch_fused_cfg(q, k, v, o, BH, N, causal, br, mr, 0);
+    } else if (name == "fused_tc") {
+      return attn::launch_fused_tc(q, k, v, o, BH, N, causal, 0);
+    }
+    return cudaErrorInvalidValue;
+  };
+
+  const bool known = name == "naive" || name == "tiled" || name == "fused" || name == "fused_vec" ||
+                     name == "fused_db" || name == "fused_tc" || name.rfind("fused_tuned:", 0) == 0 ||
+                     name.rfind("fused_cfg:", 0) == 0;
+  if (!known) {
     std::fprintf(stderr, "unknown kernel %s\n", name.c_str());
     return 1;
   }
+  if (name == "naive" || name == "tiled") CK(cudaMalloc(&S, (size_t)BH * N * N * sizeof(float)));
+  const cudaError_t err = launch();
   CK(err);
+  const char* iters_env = std::getenv("HARNESS_ITERS");
+  const int iters = iters_env ? std::atoi(iters_env) : 0;
   CK(cudaDeviceSynchronize());
   CK(cudaMemcpy(ho.data(), o, n * sizeof(__half), cudaMemcpyDeviceToHost));
 
@@ -123,6 +143,24 @@ int main(int argc, char** argv) {
   const bool pass = max_err <= 2e-3;
   std::printf("RESULT kernel=%s BH=%d N=%d causal=%d max_abs_err=%.3e status=%s\n", name.c_str(), BH, N,
               (int)causal, max_err, pass ? "PASS" : "FAIL");
+  if (iters > 0 && pass) {
+    for (int w = 0; w < 10; ++w) CK(launch());  // warm-up
+    CK(cudaDeviceSynchronize());
+    cudaEvent_t e0, e1;
+    CK(cudaEventCreate(&e0));
+    CK(cudaEventCreate(&e1));
+    std::vector<float> ms(iters);
+    for (int it = 0; it < iters; ++it) {
+      CK(cudaEventRecord(e0));
+      CK(launch());
+      CK(cudaEventRecord(e1));
+      CK(cudaEventSynchronize(e1));
+      CK(cudaEventElapsedTime(&ms[it], e0, e1));
+    }
+    std::sort(ms.begin(), ms.end());
+    std::printf("TIME kernel=%s BH=%d N=%d causal=%d median_ms=%.5f min_ms=%.5f iters=%d\n", name.c_str(), BH, N,
+                (int)causal, ms[iters / 2], ms[0], iters);
+  }
   cudaFree(q); cudaFree(k); cudaFree(v); cudaFree(o);
   if (S) cudaFree(S);
   return pass ? 0 : 3;
