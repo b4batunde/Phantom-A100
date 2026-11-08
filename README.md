@@ -60,9 +60,21 @@ Results so far (**Simulated**, A100 slice, BH = 42, N = 128; full report in
   51% of runs. The space is small (15 points) and one point dominates, so random search is a real
   competitor here. The bigger test is a larger space and other kernels.
 
-Not shown yet: whether the simulated ranking holds on a real A100. `python -m autotune.validate_hw` (part of
-`scripts/run_all.sh`) measures that: Spearman rank correlation, top-k agreement, regret and per-decision
-accuracy. Design notes and limits: [`autotune/README.md`](autotune/README.md).
+Not shown yet: whether any of this holds on a real A100. That test is **pre-registered**: the optimizer
+was frozen (tag `autotune-v1-sim-only`), and its predictions were written to
+[`results/autotune/preregistration/`](results/autotune/preregistration/README.md) before any hardware
+measurement: the full simulated ranking, every decision, predicted counter and performance directions for
+83 transitions, the simulator's known limitations, an explicit simulator-to-Nsight metric mapping, and
+hypotheses H1 to H9 with pass/fail criteria (including a possible v2/v3 reversal caused by a register-count
+disagreement between the simulator and the sm_80 compiler).
+
+`python -m autotune.validate_hw` (part of `scripts/run_all.sh`) scores those predictions, keeping three
+questions apart: **performance fidelity** (does simulation rank kernels correctly?), **mechanism fidelity**
+(do the predicted counter changes happen on hardware, counter by counter?) and **decision fidelity** (would
+the frozen optimizer have decided well on hardware data?). Nsight Compute profiling is optional; without
+counter permissions it falls back to timing, and unobservable counters are reported as such, not as
+misses. Hardware-informed changes go into autotune-v2. Design notes and limits:
+[`autotune/README.md`](autotune/README.md).
 
 ## Findings: what you can and cannot learn without the GPU
 

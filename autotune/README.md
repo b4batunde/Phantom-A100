@@ -29,7 +29,9 @@ session, `results/autotune/measured/validation.md` (Measured).
 | `backends.py` | GPGPU-Sim runner with a deterministic cache, a replay backend for fair strategy comparisons, and static `ptxas -v` facts for sm_80. |
 | `groundtruth.py` | Simulates every sim-verifiable point once. |
 | `experiments.py` | Rediscovery from v1, robustness from every start, same-budget comparison, signature audit, greedy ablation. |
-| `validate_hw.py` | On a real GPU: times every point, reports Spearman / Kendall rank correlation with simulated cycles, top-k agreement, regret, decision accuracy, and whether the flagged predictions held. |
+| `freeze.py` | Writes and verifies the pre-registration: manifest (frozen commit, SHA-256 of every frozen file) and machine-readable predictions with hypotheses H1-H9. |
+| `hw_counters.py` | The explicit simulator-counter -> Nsight Compute metric mapping (same_definition / approximate / proxy), the optional ncu runner and parser. Missing values are UNOBSERVABLE. |
+| `validate_hw.py` | On a real GPU: times all 23 points, optionally profiles them, and scores the frozen predictions as performance, mechanism and decision fidelity. `--rescore` re-scores saved measurements without a GPU. |
 | `run.py` | One live search on the simulator for a new workload or starting point. |
 
 ## Two mechanisms worth calling out
@@ -56,7 +58,10 @@ python -m autotune.groundtruth --jobs 2          # about 1 hour on 2 cores for B
 python -m autotune.experiments                   # seconds, from the cache
 python -m pytest -q tests/test_autotune.py       # CPU-only unit tests
 
-# on a rented GPU (also part of scripts/run_all.sh)
+# pre-registration (done once, before any hardware data; tag autotune-v1-prereg)
+python -m autotune.freeze write && python -m autotune.freeze verify
+
+# on a rented GPU (also part of scripts/run_all.sh); --profile off for timing only
 python -m autotune.validate_hw
 ```
 
