@@ -4,7 +4,7 @@
 #   bash scripts/run_all.sh            # on a fresh A100 / L4 / H100 box with PyTorch + CUDA
 #
 # Steps: environment record -> build -> flash-attn -> tests (gate) -> benchmark -> tile sweep
-#        -> plots + summary -> Nsight profiles (if ncu exists) -> results.tar.gz
+#        -> plots + summary -> Nsight profiles (if ncu exists) -> autotune validation -> results.tar.gz
 set -euo pipefail
 cd "$(dirname "$0")/.."
 mkdir -p results/measured
@@ -45,5 +45,8 @@ else
   echo "ncu not found: skipping Nsight profiles"
 fi
 
-tar czf results_measured.tar.gz results/measured
+log "autotune hardware validation (simulated ranking vs measured)"
+python -m autotune.validate_hw || echo "autotune validation failed; other results kept"
+
+tar czf results_measured.tar.gz results/measured results/autotune/measured
 log "done -> results_measured.tar.gz (download it before the instance shuts down)"

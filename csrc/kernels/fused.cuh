@@ -23,8 +23,8 @@
 namespace attn {
 
 
-template <typename T, int D, int BR, int BC>
-__global__ void __launch_bounds__(BR)
+template <typename T, int D, int BR, int BC, int MINB = 0>  // MINB 0: no min-blocks hint (same PTX as plain __launch_bounds__(BR))
+__global__ void __launch_bounds__(BR, MINB)
 fused_fwd(const T* __restrict__ Q, const T* __restrict__ K, const T* __restrict__ V, T* __restrict__ O,
           int N, float scale_log2, bool causal) {
   __shared__ float Ks[BC][D];       // every thread reads the same Ks[j][c] -> broadcast, no padding needed
@@ -109,6 +109,28 @@ cudaError_t launch_fused(const T* q, const T* k, const T* v, T* o, int BH, int N
   const float scale_log2 = kLog2e / sqrtf((float)D);
   fused_fwd<T, D, BR, BC><<<dim3(ceil_div(N, BR), BH), BR, 0, stream>>>(q, k, v, o, N, scale_log2, causal);
   return cudaGetLastError();
+}
+
+// Design-space entry point used by autotune/ (sim/harness.cu): v3 at another query-tile size
+// and/or with a register cap. maxreg = 0 means no cap; otherwise __launch_bounds__ asks ptxas to fit
+// 65536 / (BR * maxreg) blocks per SM, i.e. at most `maxreg` registers per thread. In the simulator
+// a cap is free (PTX has no spills); on hardware ptxas may spill to local memory.
+template <int BR, int MINB>
+cudaError_t launch_fused_cfg_t(const __half* q, const __half* k, const __half* v, __half* o, int BH, int N,
+                               bool causal, cudaStream_t stream) {
+  constexpr int D = 64, BC = 32;
+  const float scale_log2 = kLog2e / sqrtf((float)D);
+  fused_fwd<__half, D, BR, BC, MINB><<<dim3(ceil_div(N, BR), BH), BR, 0, stream>>>(q, k, v, o, N, scale_log2, causal);
+  return cudaGetLastError();
+}
+
+inline cudaError_t launch_fused_cfg(const __half* q, const __half* k, const __half* v, __half* o, int BH, int N,
+                                    bool causal, int br, int maxreg, cudaStream_t stream) {
+  if (br == 64 && maxreg == 0) return launch_fused_cfg_t<64, 0>(q, k, v, o, BH, N, causal, stream);
+  if (br == 64 && maxreg == 128) return launch_fused_cfg_t<64, 8>(q, k, v, o, BH, N, causal, stream);
+  if (br == 128 && maxreg == 0) return launch_fused_cfg_t<128, 0>(q, k, v, o, BH, N, causal, stream);
+  if (br == 128 && maxreg == 128) return launch_fused_cfg_t<128, 4>(q, k, v, o, BH, N, causal, stream);
+  return cudaErrorInvalidValue;
 }
 
 }  // namespace attn

@@ -38,6 +38,15 @@ nvcc -O3 -std=c++17 --cudart shared -gencode arch=compute_75,code=compute_75 -o 
 
 ## Run
 
+`setup_environment` may pick a library directory named after a different gcc version than the one
+that built the simulator. If the harness reports "no CUDA-capable device", set the paths yourself
+(the PTX variables are what `setup_environment` exports for CUDA >= 6):
+
+```bash
+export LD_LIBRARY_PATH=/path/to/gpgpu-sim/lib/gcc-<your gcc>/cuda-12000/release:$LD_LIBRARY_PATH
+export PTX_SIM_USE_PTX_FILE=1.ptx PTX_SIM_KERNELFILE=_1.ptx CUOBJDUMP_SIM_FILE=jj
+```
+
 ```bash
 source /path/to/gpgpu-sim/setup
 # correctness: all 6 kernels, N=64 and N=100 (not a tile multiple), causal off/on  (~10 min)

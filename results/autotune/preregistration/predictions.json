@@ -1,0 +1,3279 @@
+{
+ "subject": "autotune-v1",
+ "frozen_commit": "a86168113af84d98002714061e399231dc0ce3c9",
+ "manifest_sha256": "c011a933ce15f33f169206648a4ec65f953b06392f6ae44d9ebace18949379cd",
+ "written_at": "2026-11-08T02:41:27+00:00",
+ "hardware_measurements_observed": false,
+ "simulated_workload": {
+  "BH": 42,
+  "N": 128,
+  "causal": 0,
+  "d": 64,
+  "simulator": "GPGPU-Sim dev@4195dd4 + sim/patches, SM80_A100 config, 14-SM slice"
+ },
+ "hardware_workload": {
+  "BH": "round(42 * SMs / 14) (324 on a 108-SM A100)",
+  "N": 128,
+  "causal": 0,
+  "why": "same blocks per SM as the 14-SM simulated slice"
+ },
+ "tolerances": {
+  "counter_direction": 0.03,
+  "performance_direction": 0.02
+ },
+ "simulated_ranking": [
+  {
+   "rank": 1,
+   "point": "fused_tc",
+   "label": "fused_tc (v4 fused_tc)",
+   "sim_cycles": 52659,
+   "trusted": true,
+   "flags": [],
+   "sim_regs": 80,
+   "sm80_regs": 80,
+   "sm80_spill_bytes": 0,
+   "sim_occupancy_pct": 36.75,
+   "sim_blocks_per_sm": 6
+  },
+  {
+   "rank": 2,
+   "point": "fused_vec/br128/bc64/r128",
+   "label": "fused_vec/br128/bc64/r128",
+   "sim_cycles": 559186,
+   "trusted": false,
+   "flags": [
+    "ptxas spills 168 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+   ],
+   "sim_regs": 128,
+   "sm80_regs": 128,
+   "sm80_spill_bytes": 168,
+   "sim_occupancy_pct": 18.72,
+   "sim_blocks_per_sm": 4
+  },
+  {
+   "rank": 3,
+   "point": "fused_vec/br128/bc64",
+   "label": "fused_vec/br128/bc64",
+   "sim_cycles": 559326,
+   "trusted": true,
+   "flags": [],
+   "sim_regs": 168,
+   "sm80_regs": 168,
+   "sm80_spill_bytes": 0,
+   "sim_occupancy_pct": 18.73,
+   "sim_blocks_per_sm": 3
+  },
+  {
+   "rank": 4,
+   "point": "fused_vec/br128/bc32/r128",
+   "label": "fused_vec/br128/bc32/r128",
+   "sim_cycles": 561541,
+   "trusted": false,
+   "flags": [
+    "ptxas spills 168 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+   ],
+   "sim_regs": 128,
+   "sm80_regs": 128,
+   "sm80_spill_bytes": 168,
+   "sim_occupancy_pct": 18.73,
+   "sim_blocks_per_sm": 4
+  },
+  {
+   "rank": 5,
+   "point": "fused_vec/br128/bc32",
+   "label": "fused_vec/br128/bc32",
+   "sim_cycles": 561725,
+   "trusted": true,
+   "flags": [],
+   "sim_regs": 168,
+   "sm80_regs": 168,
+   "sm80_spill_bytes": 0,
+   "sim_occupancy_pct": 18.72,
+   "sim_blocks_per_sm": 3
+  },
+  {
+   "rank": 6,
+   "point": "fused_vec/br64/bc64/r128",
+   "label": "fused_vec/br64/bc64/r128",
+   "sim_cycles": 563691,
+   "trusted": false,
+   "flags": [
+    "ptxas spills 168 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+   ],
+   "sim_regs": 128,
+   "sm80_regs": 128,
+   "sm80_spill_bytes": 168,
+   "sim_occupancy_pct": 18.7,
+   "sim_blocks_per_sm": 8
+  },
+  {
+   "rank": 7,
+   "point": "fused_vec/br64/bc64",
+   "label": "fused_vec/br64/bc64",
+   "sim_cycles": 563975,
+   "trusted": true,
+   "flags": [],
+   "sim_regs": 168,
+   "sm80_regs": 168,
+   "sm80_spill_bytes": 0,
+   "sim_occupancy_pct": 18.7,
+   "sim_blocks_per_sm": 6
+  },
+  {
+   "rank": 8,
+   "point": "fused_vec/br64/bc32/r128",
+   "label": "fused_vec/br64/bc32/r128",
+   "sim_cycles": 565540,
+   "trusted": false,
+   "flags": [
+    "ptxas spills 168 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+   ],
+   "sim_regs": 128,
+   "sm80_regs": 128,
+   "sm80_spill_bytes": 168,
+   "sim_occupancy_pct": 18.71,
+   "sim_blocks_per_sm": 8
+  },
+  {
+   "rank": 9,
+   "point": "fused_vec/br64/bc32",
+   "label": "fused_vec/br64/bc32 (v3.1 fused_vec)",
+   "sim_cycles": 565972,
+   "trusted": true,
+   "flags": [],
+   "sim_regs": 168,
+   "sm80_regs": 168,
+   "sm80_spill_bytes": 0,
+   "sim_occupancy_pct": 18.7,
+   "sim_blocks_per_sm": 6
+  },
+  {
+   "rank": 10,
+   "point": "fused/br128/bc32/r128",
+   "label": "fused/br128/bc32/r128",
+   "sim_cycles": 686124,
+   "trusted": false,
+   "flags": [
+    "ptxas spills 188 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+   ],
+   "sim_regs": 128,
+   "sm80_regs": 128,
+   "sm80_spill_bytes": 188,
+   "sim_occupancy_pct": 18.62,
+   "sim_blocks_per_sm": 4
+  },
+  {
+   "rank": 11,
+   "point": "fused/br64/bc32/r128",
+   "label": "fused/br64/bc32/r128",
+   "sim_cycles": 732923,
+   "trusted": false,
+   "flags": [
+    "ptxas spills 188 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+   ],
+   "sim_regs": 128,
+   "sm80_regs": 128,
+   "sm80_spill_bytes": 188,
+   "sim_occupancy_pct": 18.64,
+   "sim_blocks_per_sm": 6
+  },
+  {
+   "rank": 12,
+   "point": "tiled",
+   "label": "tiled (v2 tiled)",
+   "sim_cycles": 855959,
+   "trusted": true,
+   "flags": [],
+   "sim_regs": 44,
+   "sm80_regs": 32,
+   "sm80_spill_bytes": 0,
+   "sim_occupancy_pct": 51.76,
+   "sim_blocks_per_sm": 1
+  },
+  {
+   "rank": 13,
+   "point": "fused/br128/bc32",
+   "label": "fused/br128/bc32",
+   "sim_cycles": 1333912,
+   "trusted": true,
+   "flags": [],
+   "sim_regs": 242,
+   "sm80_regs": 168,
+   "sm80_spill_bytes": 0,
+   "sim_occupancy_pct": 11.44,
+   "sim_blocks_per_sm": 2
+  },
+  {
+   "rank": 14,
+   "point": "fused/br64/bc32",
+   "label": "fused/br64/bc32 (v3 fused)",
+   "sim_cycles": 1410914,
+   "trusted": true,
+   "flags": [],
+   "sim_regs": 242,
+   "sm80_regs": 168,
+   "sm80_spill_bytes": 0,
+   "sim_occupancy_pct": 9.76,
+   "sim_blocks_per_sm": 4
+  },
+  {
+   "rank": 15,
+   "point": "naive",
+   "label": "naive (v1 naive)",
+   "sim_cycles": 3049245,
+   "trusted": true,
+   "flags": [],
+   "sim_regs": 55,
+   "sm80_regs": 31,
+   "sm80_spill_bytes": 0,
+   "sim_occupancy_pct": 47.26,
+   "sim_blocks_per_sm": 4
+  }
+ ],
+ "search": {
+  "start": "naive",
+  "path": [
+   "naive",
+   "tiled",
+   "fused/br64/bc32",
+   "fused_vec/br64/bc32",
+   "fused_tc"
+  ],
+  "simulations_used": 7,
+  "stop_reason": "step 5: no untried transformation in the menu targets the diagnosed bottlenecks of fused_tc",
+  "decisions": [
+   {
+    "step": 1,
+    "transform": "fuse",
+    "parent": "naive",
+    "child": "fused/br64/bc32",
+    "targeted": [
+     "redundant_global_traffic",
+     "materialized_intermediate"
+    ],
+    "score": 5.208,
+    "predicted": {
+     "kernel_launches": "-",
+     "l2_accesses": "-",
+     "dram_sectors": "-",
+     "regs": "+",
+     "occupancy": "-",
+     "cycles": "-"
+    },
+    "observed": {
+     "kernel_launches": -0.6667,
+     "l2_accesses": -0.5651,
+     "dram_sectors": -1.0,
+     "regs": 3.4,
+     "occupancy": -0.7935,
+     "cycles": -0.5373
+    },
+    "matches": {
+     "kernel_launches": true,
+     "l2_accesses": true,
+     "dram_sectors": true,
+     "regs": true,
+     "occupancy": true
+    },
+    "agreement": 1.0,
+    "speedup": 2.1612,
+    "verdict": "confirmed",
+    "trusted": true,
+    "flags": [],
+    "correct": true
+   },
+   {
+    "step": 1,
+    "transform": "tile_smem",
+    "parent": "naive",
+    "child": "tiled",
+    "targeted": [
+     "redundant_global_traffic"
+    ],
+    "score": 2.976,
+    "predicted": {
+     "global_load_insn": "-",
+     "l2_accesses": "-",
+     "shmem_insn": "+",
+     "kernel_launches": "0",
+     "cycles": "-"
+    },
+    "observed": {
+     "global_load_insn": -0.9614,
+     "l2_accesses": -0.5389,
+     "shmem_insn": Infinity,
+     "kernel_launches": 0.0,
+     "cycles": -0.7193
+    },
+    "matches": {
+     "global_load_insn": true,
+     "l2_accesses": true,
+     "shmem_insn": true,
+     "kernel_launches": true
+    },
+    "agreement": 1.0,
+    "speedup": 3.5624,
+    "verdict": "confirmed",
+    "trusted": true,
+    "flags": [],
+    "correct": true
+   },
+   {
+    "step": 3,
+    "transform": "vectorize_fp16",
+    "parent": "fused/br64/bc32",
+    "child": "fused_vec/br64/bc32",
+    "targeted": [
+     "redundant_global_traffic",
+     "register_limited_occupancy"
+    ],
+    "score": 2.575,
+    "predicted": {
+     "global_load_insn": "-",
+     "l2_accesses": "-",
+     "regs": "-",
+     "occupancy": "+",
+     "cycles": "-"
+    },
+    "observed": {
+     "global_load_insn": -0.875,
+     "l2_accesses": -0.7505,
+     "regs": -0.3058,
+     "occupancy": 0.9165,
+     "cycles": -0.5989
+    },
+    "matches": {
+     "global_load_insn": true,
+     "l2_accesses": true,
+     "regs": true,
+     "occupancy": true
+    },
+    "agreement": 1.0,
+    "speedup": 2.4929,
+    "verdict": "confirmed",
+    "trusted": true,
+    "flags": [],
+    "correct": true
+   },
+   {
+    "step": 3,
+    "transform": "reg_cap_128",
+    "parent": "fused/br64/bc32",
+    "child": "fused/br64/bc32/r128",
+    "targeted": [
+     "register_limited_occupancy",
+     "latency_bound"
+    ],
+    "score": 2.054,
+    "predicted": {
+     "regs": "-",
+     "occupancy": "+",
+     "cta_per_sm": "+",
+     "cycles": "-"
+    },
+    "observed": {
+     "regs": -0.4711,
+     "occupancy": 0.9106,
+     "cta_per_sm": 0.5,
+     "cycles": -0.4805
+    },
+    "matches": {
+     "regs": true,
+     "occupancy": true,
+     "cta_per_sm": true
+    },
+    "agreement": 1.0,
+    "speedup": 1.9251,
+    "verdict": "confirmed",
+    "trusted": false,
+    "flags": [
+     "ptxas spills 188 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+    ],
+    "correct": true
+   },
+   {
+    "step": 4,
+    "transform": "tensor_cores",
+    "parent": "fused_vec/br64/bc32",
+    "child": "fused_tc",
+    "targeted": [
+     "cuda_core_math_bound"
+    ],
+    "score": 2.053,
+    "predicted": {
+     "thread_insn": "-",
+     "warp_insn": "-",
+     "regs": "-",
+     "cycles": "-"
+    },
+    "observed": {
+     "thread_insn": -0.9362,
+     "warp_insn": -0.9319,
+     "regs": -0.5238,
+     "cycles": -0.907
+    },
+    "matches": {
+     "thread_insn": true,
+     "warp_insn": true,
+     "regs": true
+    },
+    "agreement": 1.0,
+    "speedup": 10.7479,
+    "verdict": "confirmed",
+    "trusted": true,
+    "flags": [],
+    "correct": true
+   },
+   {
+    "step": 4,
+    "transform": "reg_cap_128",
+    "parent": "fused_vec/br64/bc32",
+    "child": "fused_vec/br64/bc32/r128",
+    "targeted": [
+     "register_limited_occupancy",
+     "latency_bound"
+    ],
+    "score": 1.302,
+    "predicted": {
+     "regs": "-",
+     "occupancy": "+",
+     "cta_per_sm": "+",
+     "cycles": "-"
+    },
+    "observed": {
+     "regs": -0.2381,
+     "occupancy": 0.0003,
+     "cta_per_sm": 0.3333,
+     "cycles": -0.0008
+    },
+    "matches": {
+     "regs": true,
+     "occupancy": false,
+     "cta_per_sm": true
+    },
+    "agreement": 0.667,
+    "speedup": 1.0008,
+    "verdict": "mechanism_no_gain",
+    "trusted": false,
+    "flags": [
+     "ptxas spills 168 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+    ],
+    "correct": true
+   }
+  ],
+  "unlock_moves": [
+   "no trusted improvement; blocked bottleneck(s) cuda_core_math_bound have no remedy from tiled. Taking non-improving `fuse` -> fused/br64/bc32 (0.61x) because it makes tensor_cores applicable"
+  ],
+  "diagnoses": [
+   {
+    "step": 1,
+    "incumbent": "naive",
+    "cycles": 3049245,
+    "bottlenecks": [
+     "cuda_core_math_bound (severity 7.34): 3.67 thread instructions per FLOP (tensor-core kernels are < 0.2)",
+     "redundant_global_traffic (severity 5.95): L2 traffic 17.9x compulsory",
+     "materialized_intermediate (severity 4.46): 3 launches, L2 traffic 17.9x compulsory"
+    ]
+   },
+   {
+    "step": 2,
+    "incumbent": "tiled",
+    "cycles": 855959,
+    "bottlenecks": [
+     "cuda_core_math_bound (severity 5.14): 2.57 thread instructions per FLOP (tensor-core kernels are < 0.2)",
+     "redundant_global_traffic (severity 2.74): L2 traffic 8.2x compulsory",
+     "materialized_intermediate (severity 2.06): 3 launches, L2 traffic 8.2x compulsory"
+    ],
+    "unlock": "no trusted improvement; blocked bottleneck(s) cuda_core_math_bound have no remedy from tiled. Taking non-improving `fuse` -> fused/br64/bc32 (0.61x) because it makes tensor_cores applicable"
+   },
+   {
+    "step": 3,
+    "incumbent": "fused/br64/bc32",
+    "cycles": 1410914,
+    "bottlenecks": [
+     "cuda_core_math_bound (severity 2.63): 1.32 thread instructions per FLOP (tensor-core kernels are < 0.2)",
+     "redundant_global_traffic (severity 2.59): L2 traffic 7.8x compulsory",
+     "register_limited_occupancy (severity 2.56): 4 blocks/SM limited by registers (242 regs/thread), occupancy 9.8%",
+     "latency_bound (severity 1.55): 77% of scheduler cycles stalled on dependencies, occupancy 9.8%"
+    ]
+   },
+   {
+    "step": 4,
+    "incumbent": "fused_vec/br64/bc32",
+    "cycles": 565972,
+    "bottlenecks": [
+     "cuda_core_math_bound (severity 4.11): 2.05 thread instructions per FLOP (tensor-core kernels are < 0.2)",
+     "register_limited_occupancy (severity 1.34): 6 blocks/SM limited by registers (168 regs/thread), occupancy 18.7%",
+     "latency_bound (severity 1.27): 63% of scheduler cycles stalled on dependencies, occupancy 18.7%"
+    ]
+   },
+   {
+    "step": 5,
+    "incumbent": "fused_tc",
+    "cycles": 52659,
+    "bottlenecks": [
+     "smem_bank_conflicts (severity 1.48): 0.07 conflicts per shared-memory instruction"
+    ]
+   }
+  ],
+  "greedy_ablation_path": [
+   "naive",
+   "tiled"
+  ]
+ },
+ "untrusted_candidates": [
+  {
+   "rank": 2,
+   "point": "fused_vec/br128/bc64/r128",
+   "label": "fused_vec/br128/bc64/r128",
+   "sim_cycles": 559186,
+   "trusted": false,
+   "flags": [
+    "ptxas spills 168 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+   ],
+   "sim_regs": 128,
+   "sm80_regs": 128,
+   "sm80_spill_bytes": 168,
+   "sim_occupancy_pct": 18.72,
+   "sim_blocks_per_sm": 4
+  },
+  {
+   "rank": 4,
+   "point": "fused_vec/br128/bc32/r128",
+   "label": "fused_vec/br128/bc32/r128",
+   "sim_cycles": 561541,
+   "trusted": false,
+   "flags": [
+    "ptxas spills 168 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+   ],
+   "sim_regs": 128,
+   "sm80_regs": 128,
+   "sm80_spill_bytes": 168,
+   "sim_occupancy_pct": 18.73,
+   "sim_blocks_per_sm": 4
+  },
+  {
+   "rank": 6,
+   "point": "fused_vec/br64/bc64/r128",
+   "label": "fused_vec/br64/bc64/r128",
+   "sim_cycles": 563691,
+   "trusted": false,
+   "flags": [
+    "ptxas spills 168 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+   ],
+   "sim_regs": 128,
+   "sm80_regs": 128,
+   "sm80_spill_bytes": 168,
+   "sim_occupancy_pct": 18.7,
+   "sim_blocks_per_sm": 8
+  },
+  {
+   "rank": 8,
+   "point": "fused_vec/br64/bc32/r128",
+   "label": "fused_vec/br64/bc32/r128",
+   "sim_cycles": 565540,
+   "trusted": false,
+   "flags": [
+    "ptxas spills 168 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+   ],
+   "sim_regs": 128,
+   "sm80_regs": 128,
+   "sm80_spill_bytes": 168,
+   "sim_occupancy_pct": 18.71,
+   "sim_blocks_per_sm": 8
+  },
+  {
+   "rank": 10,
+   "point": "fused/br128/bc32/r128",
+   "label": "fused/br128/bc32/r128",
+   "sim_cycles": 686124,
+   "trusted": false,
+   "flags": [
+    "ptxas spills 188 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+   ],
+   "sim_regs": 128,
+   "sm80_regs": 128,
+   "sm80_spill_bytes": 188,
+   "sim_occupancy_pct": 18.62,
+   "sim_blocks_per_sm": 4
+  },
+  {
+   "rank": 11,
+   "point": "fused/br64/bc32/r128",
+   "label": "fused/br64/bc32/r128",
+   "sim_cycles": 732923,
+   "trusted": false,
+   "flags": [
+    "ptxas spills 188 bytes/thread on sm_80; the simulator runs PTX and does not charge for spills"
+   ],
+   "sim_regs": 128,
+   "sm80_regs": 128,
+   "sm80_spill_bytes": 188,
+   "sim_occupancy_pct": 18.64,
+   "sim_blocks_per_sm": 6
+  }
+ ],
+ "unverifiable_candidates": [
+  {
+   "from": "fused_vec/br64/bc32",
+   "transform": "double_buffer",
+   "point": "fused_vec/br64/bc32/db",
+   "targets": [
+    "latency_bound"
+   ],
+   "why_not_simulated": [
+    "cp.async double buffering is not implemented in GPGPU-Sim (the sm_75 PTX path falls back to synchronous copies)"
+   ]
+  },
+  {
+   "point": "fused_vec/br64/bc32/db/r128",
+   "from": "fused_vec/br64/bc32/r128",
+   "transform": "double_buffer"
+  },
+  {
+   "point": "fused_vec/br64/bc64/db",
+   "from": "fused_vec/br64/bc64",
+   "transform": "double_buffer"
+  },
+  {
+   "point": "fused_vec/br64/bc64/db/r128",
+   "from": "fused_vec/br64/bc64/r128",
+   "transform": "double_buffer"
+  },
+  {
+   "point": "fused_vec/br128/bc32/db",
+   "from": "fused_vec/br128/bc32",
+   "transform": "double_buffer"
+  },
+  {
+   "point": "fused_vec/br128/bc32/db/r128",
+   "from": "fused_vec/br128/bc32/r128",
+   "transform": "double_buffer"
+  },
+  {
+   "point": "fused_vec/br128/bc64/db",
+   "from": "fused_vec/br128/bc64",
+   "transform": "double_buffer"
+  },
+  {
+   "point": "fused_vec/br128/bc64/db/r128",
+   "from": "fused_vec/br128/bc64/r128",
+   "transform": "double_buffer"
+  }
+ ],
+ "declared_signatures": {
+  "tile_smem": {
+   "global_load_insn": "-",
+   "l2_accesses": "-",
+   "shmem_insn": "+",
+   "kernel_launches": "0",
+   "cycles": "-"
+  },
+  "fuse": {
+   "kernel_launches": "-",
+   "l2_accesses": "-",
+   "dram_sectors": "-",
+   "regs": "+",
+   "occupancy": "-",
+   "cycles": "-"
+  },
+  "vectorize_fp16": {
+   "global_load_insn": "-",
+   "l2_accesses": "-",
+   "regs": "-",
+   "occupancy": "+",
+   "cycles": "-"
+  },
+  "tensor_cores": {
+   "thread_insn": "-",
+   "warp_insn": "-",
+   "regs": "-",
+   "cycles": "-"
+  },
+  "reg_cap_128": {
+   "regs": "-",
+   "occupancy": "+",
+   "cta_per_sm": "+",
+   "cycles": "-"
+  },
+  "remove_reg_cap": {
+   "regs": "+",
+   "lmem": "-",
+   "occupancy": "-"
+  },
+  "grow_br": {
+   "l2_accesses": "-",
+   "blocks": "-",
+   "cycles": "-"
+  },
+  "shrink_br": {
+   "blocks": "+",
+   "occupancy": "+",
+   "cycles": "-"
+  },
+  "grow_bc": {
+   "shmem_insn": "?",
+   "cta_per_sm": "?",
+   "cycles": "-"
+  },
+  "shrink_bc": {
+   "cta_per_sm": "+",
+   "occupancy": "+",
+   "cycles": "-"
+  },
+  "double_buffer": {
+   "scoreboard_frac": "-",
+   "cycles": "-"
+  }
+ },
+ "counter_mapping": {
+  "cycles": {
+   "metrics": [
+    "gpu__time_duration.sum"
+   ],
+   "combine": "sum",
+   "equivalence": "performance",
+   "label": "Cycles / time",
+   "note": "simulated cycles vs measured kernel time; compared as a performance direction"
+  },
+  "regs": {
+   "metrics": [
+    "launch__registers_per_thread"
+   ],
+   "combine": "dominant",
+   "equivalence": "same_definition",
+   "label": "Registers per thread",
+   "note": "simulator: ptxas on compute_75 PTX; hardware: native sm_80+ SASS"
+  },
+  "occupancy": {
+   "metrics": [
+    "sm__warps_active.avg.pct_of_peak_sustained_active"
+   ],
+   "combine": "weighted",
+   "equivalence": "same_definition",
+   "label": "Achieved occupancy",
+   "note": "average active warps / maximum warps per SM"
+  },
+  "cta_per_sm": {
+   "metrics": [
+    "launch__occupancy_limit_registers",
+    "launch__occupancy_limit_shared_mem",
+    "launch__occupancy_limit_warps",
+    "launch__occupancy_limit_blocks"
+   ],
+   "combine": "dominant_min",
+   "equivalence": "same_definition",
+   "label": "Resident blocks per SM",
+   "note": "theoretical blocks per SM = min of the four launch occupancy limits"
+  },
+  "blocks": {
+   "metrics": [
+    "launch__grid_size"
+   ],
+   "combine": "dominant",
+   "equivalence": "same_definition",
+   "label": "Blocks (grid size)",
+   "note": "dominant kernel"
+  },
+  "kernel_launches": {
+   "metrics": [],
+   "combine": "count",
+   "equivalence": "same_definition",
+   "label": "Kernel launches",
+   "note": "number of kernels profiled for one forward pass"
+  },
+  "l2_accesses": {
+   "metrics": [
+    "lts__t_sectors.sum"
+   ],
+   "combine": "sum",
+   "equivalence": "approximate",
+   "label": "L2 traffic",
+   "note": "simulator L2 accesses vs hardware L2 sectors (32 B)"
+  },
+  "dram_sectors": {
+   "metrics": [
+    "dram__sectors_read.sum",
+    "dram__sectors_write.sum"
+   ],
+   "combine": "sum",
+   "equivalence": "approximate",
+   "label": "DRAM traffic",
+   "note": "the 14-SM slice has 1/8 of the A100's L2, so hits and misses can differ"
+  },
+  "global_load_insn": {
+   "metrics": [
+    "smsp__inst_executed_op_global_ld.sum"
+   ],
+   "combine": "sum",
+   "equivalence": "approximate",
+   "label": "Global load instructions",
+   "note": "PTX loads (simulator) vs SASS warp-level loads"
+  },
+  "shmem_insn": {
+   "metrics": [
+    "smsp__inst_executed_op_shared_ld.sum",
+    "smsp__inst_executed_op_shared_st.sum"
+   ],
+   "combine": "sum",
+   "equivalence": "approximate",
+   "label": "Shared-memory instructions",
+   "note": "PTX vs SASS accounting"
+  },
+  "warp_insn": {
+   "metrics": [
+    "smsp__inst_executed.sum"
+   ],
+   "combine": "sum",
+   "equivalence": "approximate",
+   "label": "Warp instructions",
+   "note": "PTX (simulator) vs SASS (hardware)"
+  },
+  "thread_insn": {
+   "metrics": [
+    "smsp__thread_inst_executed.sum"
+   ],
+   "combine": "sum",
+   "equivalence": "approximate",
+   "label": "Thread instructions",
+   "note": "PTX (simulator) vs SASS (hardware)"
+  },
+  "shmem_bank_conflicts": {
+   "metrics": [
+    "l1tex__data_bank_conflicts_pipe_lsu_mem_shared.sum"
+   ],
+   "combine": "sum",
+   "equivalence": "approximate",
+   "label": "Shared-memory bank conflicts",
+   "note": "the simulator models WMMA shared-memory access differently"
+  },
+  "issue_util": {
+   "metrics": [
+    "sm__inst_issued.avg.pct_of_peak_sustained_active"
+   ],
+   "combine": "weighted",
+   "equivalence": "proxy",
+   "label": "Pipeline (issue) utilization",
+   "note": "simulator: warp insns / (cycles x SMs x 4); hardware: issue-slot utilization"
+  },
+  "scoreboard_frac": {
+   "metrics": [
+    "smsp__warp_issue_stalled_long_scoreboard_per_warp_active.pct"
+   ],
+   "combine": "weighted",
+   "equivalence": "proxy",
+   "label": "Dependency (scoreboard) stalls",
+   "note": "simulator: share of scheduler cycles with no issue due to scoreboard; hardware: long-scoreboard stalls per active warp"
+  }
+ },
+ "scoring": {
+  "counter_match": "direction of hardware change (tolerance above) equals the predicted direction; '?' predictions are NO_CLAIM; a missing hardware value is UNOBSERVABLE, not a mismatch",
+  "two_predictors": "each transition is scored twice: the simulator's observed direction (does the simulator predict hardware?) and the transformation's declared signature (does the rule predict hardware?)",
+  "questions": {
+   "performance_fidelity": "does simulation rank configurations correctly?",
+   "mechanism_fidelity": "do predicted counter changes occur on hardware?",
+   "decision_fidelity": "would the frozen optimizer have made useful decisions on hardware measurements?"
+  }
+ },
+ "transitions": [
+  {
+   "transform": "vectorize_fp16",
+   "parent": "fused/br64/bc32",
+   "child": "fused_vec/br64/bc32",
+   "declared_signature": {
+    "global_load_insn": "-",
+    "l2_accesses": "-",
+    "regs": "-",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic",
+    "register_limited_occupancy"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 2.4929,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "-",
+    "warp_insn": "+",
+    "thread_insn": "+",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "+",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "tensor_cores",
+   "parent": "fused/br64/bc32",
+   "child": "fused_tc",
+   "declared_signature": {
+    "thread_insn": "-",
+    "warp_insn": "-",
+    "regs": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "cuda_core_math_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 26.7934,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "-",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "+",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "reg_cap_128",
+   "parent": "fused/br64/bc32",
+   "child": "fused/br64/bc32/r128",
+   "declared_signature": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "register_limited_occupancy",
+    "latency_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.9251,
+   "predicted_performance": "faster",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "+",
+    "scoreboard_frac": "+"
+   }
+  },
+  {
+   "transform": "grow_br",
+   "parent": "fused/br64/bc32",
+   "child": "fused/br128/bc32",
+   "declared_signature": {
+    "l2_accesses": "-",
+    "blocks": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0577,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "+",
+    "cta_per_sm": "-",
+    "blocks": "-",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "0",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "+"
+   }
+  },
+  {
+   "transform": "vectorize_fp16",
+   "parent": "fused/br64/bc32/r128",
+   "child": "fused_vec/br64/bc32/r128",
+   "declared_signature": {
+    "global_load_insn": "-",
+    "l2_accesses": "-",
+    "regs": "-",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic",
+    "register_limited_occupancy"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.296,
+   "predicted_performance": "faster",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "+",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "-",
+    "warp_insn": "+",
+    "thread_insn": "+",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "+",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "tensor_cores",
+   "parent": "fused/br64/bc32/r128",
+   "child": "fused_tc",
+   "declared_signature": {
+    "thread_insn": "-",
+    "warp_insn": "-",
+    "regs": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "cuda_core_math_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 13.9183,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "0",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "-",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "+",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "remove_reg_cap",
+   "parent": "fused/br64/bc32/r128",
+   "child": "fused/br64/bc32",
+   "declared_signature": {
+    "regs": "+",
+    "lmem": "-",
+    "occupancy": "-"
+   },
+   "targets": [
+    "register_spills"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.5195,
+   "predicted_performance": "slower",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "+",
+    "occupancy": "-",
+    "cta_per_sm": "-",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "-",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "grow_br",
+   "parent": "fused/br64/bc32/r128",
+   "child": "fused/br128/bc32/r128",
+   "declared_signature": {
+    "l2_accesses": "-",
+    "blocks": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0682,
+   "predicted_performance": "faster",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "-",
+    "blocks": "-",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "0",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "vectorize_fp16",
+   "parent": "fused/br128/bc32",
+   "child": "fused_vec/br128/bc32",
+   "declared_signature": {
+    "global_load_insn": "-",
+    "l2_accesses": "-",
+    "regs": "-",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic",
+    "register_limited_occupancy"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 2.3747,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "-",
+    "warp_insn": "+",
+    "thread_insn": "+",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "+",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "tensor_cores",
+   "parent": "fused/br128/bc32",
+   "child": "fused_tc",
+   "declared_signature": {
+    "thread_insn": "-",
+    "warp_insn": "-",
+    "regs": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "cuda_core_math_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 25.3311,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "blocks": "+",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "-",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "+",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "reg_cap_128",
+   "parent": "fused/br128/bc32",
+   "child": "fused/br128/bc32/r128",
+   "declared_signature": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "register_limited_occupancy",
+    "latency_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.9441,
+   "predicted_performance": "faster",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "+",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "shrink_br",
+   "parent": "fused/br128/bc32",
+   "child": "fused/br64/bc32",
+   "declared_signature": {
+    "blocks": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "low_parallelism"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.9454,
+   "predicted_performance": "slower",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "-",
+    "cta_per_sm": "+",
+    "blocks": "+",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "+",
+    "shmem_insn": "0",
+    "warp_insn": "+",
+    "thread_insn": "+",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "vectorize_fp16",
+   "parent": "fused/br128/bc32/r128",
+   "child": "fused_vec/br128/bc32/r128",
+   "declared_signature": {
+    "global_load_insn": "-",
+    "l2_accesses": "-",
+    "regs": "-",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic",
+    "register_limited_occupancy"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.2219,
+   "predicted_performance": "faster",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "0",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "-",
+    "warp_insn": "+",
+    "thread_insn": "+",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "+",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "tensor_cores",
+   "parent": "fused/br128/bc32/r128",
+   "child": "fused_tc",
+   "declared_signature": {
+    "thread_insn": "-",
+    "warp_insn": "-",
+    "regs": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "cuda_core_math_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 13.0296,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "blocks": "+",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "-",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "+",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "remove_reg_cap",
+   "parent": "fused/br128/bc32/r128",
+   "child": "fused/br128/bc32",
+   "declared_signature": {
+    "regs": "+",
+    "lmem": "-",
+    "occupancy": "-"
+   },
+   "targets": [
+    "register_spills"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.5144,
+   "predicted_performance": "slower",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "+",
+    "occupancy": "-",
+    "cta_per_sm": "-",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "-",
+    "scoreboard_frac": "+"
+   }
+  },
+  {
+   "transform": "shrink_br",
+   "parent": "fused/br128/bc32/r128",
+   "child": "fused/br64/bc32/r128",
+   "declared_signature": {
+    "blocks": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "low_parallelism"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.9361,
+   "predicted_performance": "slower",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "+",
+    "blocks": "+",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "+",
+    "shmem_insn": "0",
+    "warp_insn": "+",
+    "thread_insn": "+",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "tensor_cores",
+   "parent": "fused_vec/br64/bc32",
+   "child": "fused_tc",
+   "declared_signature": {
+    "thread_insn": "-",
+    "warp_insn": "-",
+    "regs": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "cuda_core_math_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 10.7479,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "0",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "-",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "-",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "reg_cap_128",
+   "parent": "fused_vec/br64/bc32",
+   "child": "fused_vec/br64/bc32/r128",
+   "declared_signature": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "register_limited_occupancy",
+    "latency_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0008,
+   "predicted_performance": "same",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "0",
+    "cta_per_sm": "+",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "grow_br",
+   "parent": "fused_vec/br64/bc32",
+   "child": "fused_vec/br128/bc32",
+   "declared_signature": {
+    "l2_accesses": "-",
+    "blocks": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0076,
+   "predicted_performance": "same",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "-",
+    "blocks": "-",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "-",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "grow_bc",
+   "parent": "fused_vec/br64/bc32",
+   "child": "fused_vec/br64/bc64",
+   "declared_signature": {
+    "shmem_insn": "?",
+    "cta_per_sm": "?",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0035,
+   "predicted_performance": "same",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "0",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "double_buffer",
+   "parent": "fused_vec/br64/bc32",
+   "child": "fused_vec/br64/bc32/db",
+   "declared_signature": {
+    "scoreboard_frac": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "tensor_cores",
+   "parent": "fused_vec/br64/bc32/r128",
+   "child": "fused_tc",
+   "declared_signature": {
+    "thread_insn": "-",
+    "warp_insn": "-",
+    "regs": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "cuda_core_math_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 10.7397,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "-",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "-",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "-",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "remove_reg_cap",
+   "parent": "fused_vec/br64/bc32/r128",
+   "child": "fused_vec/br64/bc32",
+   "declared_signature": {
+    "regs": "+",
+    "lmem": "-",
+    "occupancy": "-"
+   },
+   "targets": [
+    "register_spills"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.9992,
+   "predicted_performance": "same",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "+",
+    "occupancy": "0",
+    "cta_per_sm": "-",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "grow_br",
+   "parent": "fused_vec/br64/bc32/r128",
+   "child": "fused_vec/br128/bc32/r128",
+   "declared_signature": {
+    "l2_accesses": "-",
+    "blocks": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0071,
+   "predicted_performance": "same",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "-",
+    "blocks": "-",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "-",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "grow_bc",
+   "parent": "fused_vec/br64/bc32/r128",
+   "child": "fused_vec/br64/bc64/r128",
+   "declared_signature": {
+    "shmem_insn": "?",
+    "cta_per_sm": "?",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0033,
+   "predicted_performance": "same",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "0",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "double_buffer",
+   "parent": "fused_vec/br64/bc32/r128",
+   "child": "fused_vec/br64/bc32/db/r128",
+   "declared_signature": {
+    "scoreboard_frac": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "reg_cap_128",
+   "parent": "fused_vec/br64/bc32/db",
+   "child": "fused_vec/br64/bc32/db/r128",
+   "declared_signature": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "register_limited_occupancy",
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "grow_br",
+   "parent": "fused_vec/br64/bc32/db",
+   "child": "fused_vec/br128/bc32/db",
+   "declared_signature": {
+    "l2_accesses": "-",
+    "blocks": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "grow_bc",
+   "parent": "fused_vec/br64/bc32/db",
+   "child": "fused_vec/br64/bc64/db",
+   "declared_signature": {
+    "shmem_insn": "?",
+    "cta_per_sm": "?",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "remove_reg_cap",
+   "parent": "fused_vec/br64/bc32/db/r128",
+   "child": "fused_vec/br64/bc32/db",
+   "declared_signature": {
+    "regs": "+",
+    "lmem": "-",
+    "occupancy": "-"
+   },
+   "targets": [
+    "register_spills"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "unknown",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "grow_br",
+   "parent": "fused_vec/br64/bc32/db/r128",
+   "child": "fused_vec/br128/bc32/db/r128",
+   "declared_signature": {
+    "l2_accesses": "-",
+    "blocks": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "grow_bc",
+   "parent": "fused_vec/br64/bc32/db/r128",
+   "child": "fused_vec/br64/bc64/db/r128",
+   "declared_signature": {
+    "shmem_insn": "?",
+    "cta_per_sm": "?",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "tensor_cores",
+   "parent": "fused_vec/br64/bc64",
+   "child": "fused_tc",
+   "declared_signature": {
+    "thread_insn": "-",
+    "warp_insn": "-",
+    "regs": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "cuda_core_math_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 10.7099,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "0",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "-",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "-",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "reg_cap_128",
+   "parent": "fused_vec/br64/bc64",
+   "child": "fused_vec/br64/bc64/r128",
+   "declared_signature": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "register_limited_occupancy",
+    "latency_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0005,
+   "predicted_performance": "same",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "0",
+    "cta_per_sm": "+",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "grow_br",
+   "parent": "fused_vec/br64/bc64",
+   "child": "fused_vec/br128/bc64",
+   "declared_signature": {
+    "l2_accesses": "-",
+    "blocks": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0083,
+   "predicted_performance": "same",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "-",
+    "blocks": "-",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "-",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "shrink_bc",
+   "parent": "fused_vec/br64/bc64",
+   "child": "fused_vec/br64/bc32",
+   "declared_signature": {
+    "cta_per_sm": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "smem_limited_occupancy"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.9965,
+   "predicted_performance": "same",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "0",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "double_buffer",
+   "parent": "fused_vec/br64/bc64",
+   "child": "fused_vec/br64/bc64/db",
+   "declared_signature": {
+    "scoreboard_frac": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "tensor_cores",
+   "parent": "fused_vec/br64/bc64/r128",
+   "child": "fused_tc",
+   "declared_signature": {
+    "thread_insn": "-",
+    "warp_insn": "-",
+    "regs": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "cuda_core_math_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 10.7046,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "-",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "-",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "-",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "remove_reg_cap",
+   "parent": "fused_vec/br64/bc64/r128",
+   "child": "fused_vec/br64/bc64",
+   "declared_signature": {
+    "regs": "+",
+    "lmem": "-",
+    "occupancy": "-"
+   },
+   "targets": [
+    "register_spills"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.9995,
+   "predicted_performance": "same",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "+",
+    "occupancy": "0",
+    "cta_per_sm": "-",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "grow_br",
+   "parent": "fused_vec/br64/bc64/r128",
+   "child": "fused_vec/br128/bc64/r128",
+   "declared_signature": {
+    "l2_accesses": "-",
+    "blocks": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0081,
+   "predicted_performance": "same",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "-",
+    "blocks": "-",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "0",
+    "global_load_insn": "-",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "-",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "shrink_bc",
+   "parent": "fused_vec/br64/bc64/r128",
+   "child": "fused_vec/br64/bc32/r128",
+   "declared_signature": {
+    "cta_per_sm": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "smem_limited_occupancy"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.9967,
+   "predicted_performance": "same",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "0",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "double_buffer",
+   "parent": "fused_vec/br64/bc64/r128",
+   "child": "fused_vec/br64/bc64/db/r128",
+   "declared_signature": {
+    "scoreboard_frac": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "reg_cap_128",
+   "parent": "fused_vec/br64/bc64/db",
+   "child": "fused_vec/br64/bc64/db/r128",
+   "declared_signature": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "register_limited_occupancy",
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "grow_br",
+   "parent": "fused_vec/br64/bc64/db",
+   "child": "fused_vec/br128/bc64/db",
+   "declared_signature": {
+    "l2_accesses": "-",
+    "blocks": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "shrink_bc",
+   "parent": "fused_vec/br64/bc64/db",
+   "child": "fused_vec/br64/bc32/db",
+   "declared_signature": {
+    "cta_per_sm": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "smem_limited_occupancy"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "remove_reg_cap",
+   "parent": "fused_vec/br64/bc64/db/r128",
+   "child": "fused_vec/br64/bc64/db",
+   "declared_signature": {
+    "regs": "+",
+    "lmem": "-",
+    "occupancy": "-"
+   },
+   "targets": [
+    "register_spills"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "unknown",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "grow_br",
+   "parent": "fused_vec/br64/bc64/db/r128",
+   "child": "fused_vec/br128/bc64/db/r128",
+   "declared_signature": {
+    "l2_accesses": "-",
+    "blocks": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "shrink_bc",
+   "parent": "fused_vec/br64/bc64/db/r128",
+   "child": "fused_vec/br64/bc32/db/r128",
+   "declared_signature": {
+    "cta_per_sm": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "smem_limited_occupancy"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "tensor_cores",
+   "parent": "fused_vec/br128/bc32",
+   "child": "fused_tc",
+   "declared_signature": {
+    "thread_insn": "-",
+    "warp_insn": "-",
+    "regs": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "cuda_core_math_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 10.6672,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "blocks": "+",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "+",
+    "shmem_insn": "-",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "-",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "reg_cap_128",
+   "parent": "fused_vec/br128/bc32",
+   "child": "fused_vec/br128/bc32/r128",
+   "declared_signature": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "register_limited_occupancy",
+    "latency_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0003,
+   "predicted_performance": "same",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "0",
+    "cta_per_sm": "+",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "shrink_br",
+   "parent": "fused_vec/br128/bc32",
+   "child": "fused_vec/br64/bc32",
+   "declared_signature": {
+    "blocks": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "low_parallelism"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.9925,
+   "predicted_performance": "same",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "+",
+    "blocks": "+",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "+",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "grow_bc",
+   "parent": "fused_vec/br128/bc32",
+   "child": "fused_vec/br128/bc64",
+   "declared_signature": {
+    "shmem_insn": "?",
+    "cta_per_sm": "?",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0043,
+   "predicted_performance": "same",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "0",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "double_buffer",
+   "parent": "fused_vec/br128/bc32",
+   "child": "fused_vec/br128/bc32/db",
+   "declared_signature": {
+    "scoreboard_frac": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "tensor_cores",
+   "parent": "fused_vec/br128/bc32/r128",
+   "child": "fused_tc",
+   "declared_signature": {
+    "thread_insn": "-",
+    "warp_insn": "-",
+    "regs": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "cuda_core_math_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 10.6637,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "blocks": "+",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "+",
+    "shmem_insn": "-",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "-",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "remove_reg_cap",
+   "parent": "fused_vec/br128/bc32/r128",
+   "child": "fused_vec/br128/bc32",
+   "declared_signature": {
+    "regs": "+",
+    "lmem": "-",
+    "occupancy": "-"
+   },
+   "targets": [
+    "register_spills"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.9997,
+   "predicted_performance": "same",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "+",
+    "occupancy": "0",
+    "cta_per_sm": "-",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "shrink_br",
+   "parent": "fused_vec/br128/bc32/r128",
+   "child": "fused_vec/br64/bc32/r128",
+   "declared_signature": {
+    "blocks": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "low_parallelism"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.9929,
+   "predicted_performance": "same",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "+",
+    "blocks": "+",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "+",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "grow_bc",
+   "parent": "fused_vec/br128/bc32/r128",
+   "child": "fused_vec/br128/bc64/r128",
+   "declared_signature": {
+    "shmem_insn": "?",
+    "cta_per_sm": "?",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0042,
+   "predicted_performance": "same",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "0",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "double_buffer",
+   "parent": "fused_vec/br128/bc32/r128",
+   "child": "fused_vec/br128/bc32/db/r128",
+   "declared_signature": {
+    "scoreboard_frac": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "reg_cap_128",
+   "parent": "fused_vec/br128/bc32/db",
+   "child": "fused_vec/br128/bc32/db/r128",
+   "declared_signature": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "register_limited_occupancy",
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "shrink_br",
+   "parent": "fused_vec/br128/bc32/db",
+   "child": "fused_vec/br64/bc32/db",
+   "declared_signature": {
+    "blocks": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "low_parallelism"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "grow_bc",
+   "parent": "fused_vec/br128/bc32/db",
+   "child": "fused_vec/br128/bc64/db",
+   "declared_signature": {
+    "shmem_insn": "?",
+    "cta_per_sm": "?",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "remove_reg_cap",
+   "parent": "fused_vec/br128/bc32/db/r128",
+   "child": "fused_vec/br128/bc32/db",
+   "declared_signature": {
+    "regs": "+",
+    "lmem": "-",
+    "occupancy": "-"
+   },
+   "targets": [
+    "register_spills"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "unknown",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "shrink_br",
+   "parent": "fused_vec/br128/bc32/db/r128",
+   "child": "fused_vec/br64/bc32/db/r128",
+   "declared_signature": {
+    "blocks": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "low_parallelism"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "grow_bc",
+   "parent": "fused_vec/br128/bc32/db/r128",
+   "child": "fused_vec/br128/bc64/db/r128",
+   "declared_signature": {
+    "shmem_insn": "?",
+    "cta_per_sm": "?",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "tensor_cores",
+   "parent": "fused_vec/br128/bc64",
+   "child": "fused_tc",
+   "declared_signature": {
+    "thread_insn": "-",
+    "warp_insn": "-",
+    "regs": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "cuda_core_math_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 10.6217,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "blocks": "+",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "+",
+    "shmem_insn": "-",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "-",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "reg_cap_128",
+   "parent": "fused_vec/br128/bc64",
+   "child": "fused_vec/br128/bc64/r128",
+   "declared_signature": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "register_limited_occupancy",
+    "latency_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 1.0003,
+   "predicted_performance": "same",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "0",
+    "cta_per_sm": "+",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "shrink_br",
+   "parent": "fused_vec/br128/bc64",
+   "child": "fused_vec/br64/bc64",
+   "declared_signature": {
+    "blocks": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "low_parallelism"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.9918,
+   "predicted_performance": "same",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "+",
+    "blocks": "+",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "+",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "shrink_bc",
+   "parent": "fused_vec/br128/bc64",
+   "child": "fused_vec/br128/bc32",
+   "declared_signature": {
+    "cta_per_sm": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "smem_limited_occupancy"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.9957,
+   "predicted_performance": "same",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "0",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "double_buffer",
+   "parent": "fused_vec/br128/bc64",
+   "child": "fused_vec/br128/bc64/db",
+   "declared_signature": {
+    "scoreboard_frac": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "tensor_cores",
+   "parent": "fused_vec/br128/bc64/r128",
+   "child": "fused_tc",
+   "declared_signature": {
+    "thread_insn": "-",
+    "warp_insn": "-",
+    "regs": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "cuda_core_math_bound"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 10.619,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "blocks": "+",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "+",
+    "shmem_insn": "-",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "-",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "remove_reg_cap",
+   "parent": "fused_vec/br128/bc64/r128",
+   "child": "fused_vec/br128/bc64",
+   "declared_signature": {
+    "regs": "+",
+    "lmem": "-",
+    "occupancy": "-"
+   },
+   "targets": [
+    "register_spills"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.9997,
+   "predicted_performance": "same",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "+",
+    "occupancy": "0",
+    "cta_per_sm": "-",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "shrink_br",
+   "parent": "fused_vec/br128/bc64/r128",
+   "child": "fused_vec/br64/bc64/r128",
+   "declared_signature": {
+    "blocks": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "low_parallelism"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.992,
+   "predicted_performance": "same",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "+",
+    "blocks": "+",
+    "kernel_launches": "0",
+    "l2_accesses": "+",
+    "dram_sectors": "0",
+    "global_load_insn": "+",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "+",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "shrink_bc",
+   "parent": "fused_vec/br128/bc64/r128",
+   "child": "fused_vec/br128/bc32/r128",
+   "declared_signature": {
+    "cta_per_sm": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "smem_limited_occupancy"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.9958,
+   "predicted_performance": "same",
+   "child_trusted": false,
+   "sim_counter_direction": {
+    "regs": "0",
+    "occupancy": "0",
+    "cta_per_sm": "0",
+    "blocks": "0",
+    "kernel_launches": "0",
+    "l2_accesses": "0",
+    "dram_sectors": "0",
+    "global_load_insn": "0",
+    "shmem_insn": "0",
+    "warp_insn": "0",
+    "thread_insn": "0",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "0",
+    "scoreboard_frac": "0"
+   }
+  },
+  {
+   "transform": "double_buffer",
+   "parent": "fused_vec/br128/bc64/r128",
+   "child": "fused_vec/br128/bc64/db/r128",
+   "declared_signature": {
+    "scoreboard_frac": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "reg_cap_128",
+   "parent": "fused_vec/br128/bc64/db",
+   "child": "fused_vec/br128/bc64/db/r128",
+   "declared_signature": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "register_limited_occupancy",
+    "latency_bound"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "shrink_br",
+   "parent": "fused_vec/br128/bc64/db",
+   "child": "fused_vec/br64/bc64/db",
+   "declared_signature": {
+    "blocks": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "low_parallelism"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "shrink_bc",
+   "parent": "fused_vec/br128/bc64/db",
+   "child": "fused_vec/br128/bc32/db",
+   "declared_signature": {
+    "cta_per_sm": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "smem_limited_occupancy"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "remove_reg_cap",
+   "parent": "fused_vec/br128/bc64/db/r128",
+   "child": "fused_vec/br128/bc64/db",
+   "declared_signature": {
+    "regs": "+",
+    "lmem": "-",
+    "occupancy": "-"
+   },
+   "targets": [
+    "register_spills"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "unknown",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "shrink_br",
+   "parent": "fused_vec/br128/bc64/db/r128",
+   "child": "fused_vec/br64/bc64/db/r128",
+   "declared_signature": {
+    "blocks": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "low_parallelism"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "shrink_bc",
+   "parent": "fused_vec/br128/bc64/db/r128",
+   "child": "fused_vec/br128/bc32/db/r128",
+   "declared_signature": {
+    "cta_per_sm": "+",
+    "occupancy": "+",
+    "cycles": "-"
+   },
+   "targets": [
+    "smem_limited_occupancy"
+   ],
+   "sim_verifiable": false,
+   "sim_speedup": null,
+   "predicted_performance": "faster",
+   "prediction_source": "declared signature only (simulator cannot judge this point)"
+  },
+  {
+   "transform": "tile_smem",
+   "parent": "naive",
+   "child": "tiled",
+   "declared_signature": {
+    "global_load_insn": "-",
+    "l2_accesses": "-",
+    "shmem_insn": "+",
+    "kernel_launches": "0",
+    "cycles": "-"
+   },
+   "targets": [
+    "redundant_global_traffic"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 3.5624,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "-",
+    "occupancy": "+",
+    "cta_per_sm": "-",
+    "blocks": "?",
+    "kernel_launches": "0",
+    "l2_accesses": "-",
+    "dram_sectors": "-",
+    "global_load_insn": "-",
+    "shmem_insn": "+",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "+",
+    "scoreboard_frac": "-"
+   }
+  },
+  {
+   "transform": "fuse",
+   "parent": "naive",
+   "child": "fused/br64/bc32",
+   "declared_signature": {
+    "kernel_launches": "-",
+    "l2_accesses": "-",
+    "dram_sectors": "-",
+    "regs": "+",
+    "occupancy": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "materialized_intermediate",
+    "redundant_global_traffic"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 2.1612,
+   "predicted_performance": "faster",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "+",
+    "occupancy": "-",
+    "cta_per_sm": "0",
+    "blocks": "?",
+    "kernel_launches": "-",
+    "l2_accesses": "-",
+    "dram_sectors": "-",
+    "global_load_insn": "-",
+    "shmem_insn": "+",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "-",
+    "scoreboard_frac": "+"
+   }
+  },
+  {
+   "transform": "fuse",
+   "parent": "tiled",
+   "child": "fused/br64/bc32",
+   "declared_signature": {
+    "kernel_launches": "-",
+    "l2_accesses": "-",
+    "dram_sectors": "-",
+    "regs": "+",
+    "occupancy": "-",
+    "cycles": "-"
+   },
+   "targets": [
+    "materialized_intermediate",
+    "redundant_global_traffic"
+   ],
+   "sim_verifiable": true,
+   "sim_speedup": 0.6067,
+   "predicted_performance": "slower",
+   "child_trusted": true,
+   "sim_counter_direction": {
+    "regs": "+",
+    "occupancy": "-",
+    "cta_per_sm": "+",
+    "blocks": "?",
+    "kernel_launches": "-",
+    "l2_accesses": "-",
+    "dram_sectors": "-",
+    "global_load_insn": "-",
+    "shmem_insn": "-",
+    "warp_insn": "-",
+    "thread_insn": "-",
+    "shmem_bank_conflicts": "0",
+    "issue_util": "-",
+    "scoreboard_frac": "+"
+   }
+  }
+ ],
+ "known_simulator_limitations": [
+  "Executes PTX, not SASS: no ptxas scheduling, no register spills. Register-capped points spill 168-188 bytes/thread on sm_80 at no simulated cost.",
+  "cp.async is not implemented; double-buffered points run a synchronous fallback and are not simulated.",
+  "Register counts for occupancy come from ptxas on the compute_75 PTX the simulator runs; they can differ from the native sm_80 build (v3: 242 simulated vs 168 sm_80).",
+  "14-SM slice with 5 of 40 memory channels: L2 capacity is 1/8 of the real chip, so absolute L2/DRAM traffic and anything that depends on L2 hits can differ on the full A100.",
+  "Cycle counts are not calibrated against hardware; ratios between versions are the intended output.",
+  "naive and tiled counters come from the original v1-v4 study's logs (same kernel code)."
+ ],
+ "hypotheses": [
+  {
+   "id": "H1",
+   "question": "performance fidelity",
+   "claim": "Simulated cycles rank the 15 sim-verifiable points in nearly the same order as measured A100 time.",
+   "metric": "spearman_rho(sim_cycles, measured_ms) over the 15 sim-verifiable points",
+   "criterion": {
+    "supported": ">= 0.8",
+    "partial": ">= 0.5 and < 0.8",
+    "refuted": "< 0.5"
+   }
+  },
+  {
+   "id": "H2",
+   "question": "performance fidelity",
+   "claim": "v4 fused_tc, the simulator's best trusted point, is the fastest of all 23 points on the A100.",
+   "metric": "argmin(measured_ms) over all 23 points == 'fused_tc'",
+   "criterion": {
+    "supported": "true",
+    "refuted": "false"
+   }
+  },
+  {
+   "id": "H3",
+   "question": "performance fidelity (v2/v3 ordering)",
+   "claim": "Simulator ordering: v2 tiled is faster than v3 fused (simulated v3/v2 time ratio 1.65).",
+   "risk_identified_before_measurement": "The simulator's occupancy model gives v3 242 registers/thread (ptxas on the compute_75 PTX it executes: 4 blocks/SM), while the native sm_80 build uses 168 (6 blocks/SM). If register-limited occupancy is what makes v3 slow in simulation, v3 may be close to or faster than v2 on the A100. If so, the unlock move that carried the search from v2 to v3 was needed only because of a simulator artifact, and pure greedy search on hardware counters would not have stopped at v2.",
+   "metric": "measured_ms(fused/br64/bc32) / measured_ms(tiled)",
+   "criterion": {
+    "simulator ordering holds": "> 1.02",
+    "tie": "0.98 to 1.02",
+    "reversed": "< 0.98"
+   }
+  },
+  {
+   "id": "H4",
+   "question": "trust model (register spills)",
+   "claim": "Simulated gains of register-capped (spilling) points overstate hardware gains: that is why they were marked untrusted.",
+   "metric": "for each of the 6 capped/uncapped pairs: measured speedup of capping < simulated speedup of capping minus 0.02",
+   "criterion": {
+    "supported": ">= 4 of 6 pairs",
+    "refuted": "<= 2 of 6 pairs",
+    "inconclusive": "3 of 6"
+   }
+  },
+  {
+   "id": "H5",
+   "question": "decision fidelity",
+   "claim": "Every accepted step on the guided search path is in the same performance direction on the A100 (improving steps faster, the unlock step slower).",
+   "metric": "per step on the path: perf_dir(measured parent/child) == predicted_performance",
+   "steps": [
+    {
+     "parent": "naive",
+     "child": "tiled"
+    },
+    {
+     "parent": "tiled",
+     "child": "fused/br64/bc32"
+    },
+    {
+     "parent": "fused/br64/bc32",
+     "child": "fused_vec/br64/bc32"
+    },
+    {
+     "parent": "fused_vec/br64/bc32",
+     "child": "fused_tc"
+    }
+   ],
+   "criterion": {
+    "supported": "all steps match",
+    "partial": "all improving steps match",
+    "refuted": "an improving step is slower on hardware"
+   }
+  },
+  {
+   "id": "H6",
+   "question": "decision fidelity",
+   "claim": "The kernel the frozen optimizer selected (fused_tc) is within 5% of the measured-fastest point among all 23.",
+   "metric": "measured_ms(fused_tc) / min(measured_ms) <= 1.05",
+   "criterion": {
+    "supported": "true",
+    "refuted": "false"
+   }
+  },
+  {
+   "id": "H7",
+   "question": "mechanism fidelity",
+   "claim": "Counters whose hardware metric has the same definition as the simulator counter predict direction better than counters mapped to an approximate or proxy metric.",
+   "metric": "direction accuracy of simulator-predicted counter changes, grouped by mapping equivalence (same_definition / approximate / proxy), over all sim-verifiable transitions",
+   "expectation": "same_definition >= 0.9; approximate and proxy lower. Stated as an expectation, not a pass/fail threshold.",
+   "criterion": {
+    "supported": "accuracy(same_definition) > accuracy(approximate) and > accuracy(proxy)",
+    "refuted": "otherwise"
+   }
+  },
+  {
+   "id": "H8",
+   "question": "rule-only prediction (no simulator evidence)",
+   "claim": "double_buffer (cp.async) makes fused_vec faster on the A100, as its declared signature says. The simulator could not test this.",
+   "metric": "for each of the 4 tile configs without a register cap: measured speedup of db=1 over db=0",
+   "criterion": {
+    "supported": ">= 3 of 4 faster by > 2%",
+    "refuted": "<= 1 of 4 faster by > 2%",
+    "inconclusive": "2 of 4"
+   }
+  },
+  {
+   "id": "H9",
+   "question": "decision fidelity (search on hardware counters)",
+   "claim": "Run unchanged on hardware counters (Nsight Compute mapped through the frozen mapping) and hardware time, the frozen policy also ends at fused_tc.",
+   "metric": "final incumbent of counter_guided(start=naive) with HardwareBackend",
+   "criterion": {
+    "supported": "ends at fused_tc",
+    "refuted": "ends elsewhere",
+    "inconclusive": "Nsight counters unavailable"
+   }
+  }
+ ]
+}

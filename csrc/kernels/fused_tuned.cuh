@@ -66,8 +66,8 @@ __device__ __forceinline__ void load_kv_tile(__half* Ks, __half* Vs, const __hal
 }
 
 // ------------------------------------------------------------------ kernel
-template <int BR, int BC, bool DOUBLE_BUFFER>
-__global__ void __launch_bounds__(BR)
+template <int BR, int BC, bool DOUBLE_BUFFER, int MINB = 0>  // MINB 0: no min-blocks hint
+__global__ void __launch_bounds__(BR, MINB)
 fused_tuned_fwd(const __half* __restrict__ Q, const __half* __restrict__ K, const __half* __restrict__ V,
                 __half* __restrict__ O, int N, float scale_log2, bool causal) {
   constexpr int STAGES = DOUBLE_BUFFER ? 2 : 1;
@@ -189,11 +189,11 @@ constexpr size_t fused_tuned_smem_bytes(int br, int bc, bool double_buffer) {
   return 2 * (double_buffer ? 2 : 1) * (size_t)bc * TUNED_D * sizeof(__half) + (size_t)br * (bc + 1) * sizeof(float);
 }
 
-template <int BR, int BC, bool DB>
+template <int BR, int BC, bool DB, int MINB = 0>
 cudaError_t launch_fused_tuned_cfg(const __half* q, const __half* k, const __half* v, __half* o, int BH, int N,
                                    bool causal, cudaStream_t stream) {
   constexpr size_t smem = fused_tuned_smem_bytes(BR, BC, DB);
-  auto kernel = fused_tuned_fwd<BR, BC, DB>;
+  auto kernel = fused_tuned_fwd<BR, BC, DB, MINB>;
   if (smem > 48 * 1024) {
     cudaError_t e = cudaFuncSetAttribute(kernel, cudaFuncAttributeMaxDynamicSharedMemorySize, (int)smem);
     if (e != cudaSuccess) return e;
@@ -206,15 +206,24 @@ cudaError_t launch_fused_tuned_cfg(const __half* q, const __half* k, const __hal
 // Configurations compiled for the tile sweep. Add a line here to try another one.
 #define ATTN_TUNED_CONFIGS(X) X(64, 32) X(64, 64) X(128, 32) X(128, 64)
 
-// Returns cudaErrorInvalidValue if (br, bc) is not a compiled configuration.
+// Returns cudaErrorInvalidValue if (br, bc, maxreg) is not a compiled configuration.
+// maxreg = 0: no register cap (the original v3.1 / v3.2). maxreg = 128: __launch_bounds__ asks ptxas
+// for at most 128 registers per thread (used by autotune/; may spill on hardware).
 inline cudaError_t launch_fused_tuned(const __half* q, const __half* k, const __half* v, __half* o, int BH, int N,
-                                      bool causal, bool double_buffer, int br, int bc, cudaStream_t stream) {
+                                      bool causal, bool double_buffer, int br, int bc, cudaStream_t stream,
+                                      int maxreg = 0) {
+#define ATTN_TRY_MB(BR_, BC_, MB_)                                                                         \
+  return double_buffer ? launch_fused_tuned_cfg<BR_, BC_, true, MB_>(q, k, v, o, BH, N, causal, stream)    \
+                       : launch_fused_tuned_cfg<BR_, BC_, false, MB_>(q, k, v, o, BH, N, causal, stream);
 #define ATTN_TRY(BR_, BC_)                                                                                 \
-  if (br == BR_ && bc == BC_)                                                                              \
-    return double_buffer ? launch_fused_tuned_cfg<BR_, BC_, true>(q, k, v, o, BH, N, causal, stream)       \
-                         : launch_fused_tuned_cfg<BR_, BC_, false>(q, k, v, o, BH, N, causal, stream);
+  if (br == BR_ && bc == BC_) {                                                                            \
+    if (maxreg == 0) { ATTN_TRY_MB(BR_, BC_, 0) }                                                          \
+    if (maxreg == 128) { ATTN_TRY_MB(BR_, BC_, 65536 / (BR_ * 128)) }                                      \
+    return cudaErrorInvalidValue;                                                                          \
+  }
   ATTN_TUNED_CONFIGS(ATTN_TRY)
 #undef ATTN_TRY
+#undef ATTN_TRY_MB
   return cudaErrorInvalidValue;
 }
 
