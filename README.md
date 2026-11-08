@@ -76,9 +76,11 @@ before any hardware measurement. Then all 23 kernels were timed on an A100-SXM4-
   168). The unlock step was compensating for a simulator artifact; on hardware, fusing straight from v1 is the
   better first move.
 - **Magnitudes are off.** Tensor cores: 3.46x measured vs 10.75x simulated.
-- **Tuning is where the simulator is blind** (post-hoc): it got the direction right for 18 of 19 structural
-  transformations but 8 of 32 tile-shape and register-cap changes, mostly by predicting "no change" where the
-  A100 showed one. The one rule-only prediction (double buffering) failed (H8).
+- **For tuning, the simulator is mostly insensitive, not mostly wrong** (post-hoc): it called the direction of 18
+  of 19 structural transformations correctly. For tile-shape and register-cap changes it predicted a tie in 24 of
+  32 cases, and the A100 resolved 22 of those into material differences; when it did commit to a direction it
+  was right 6 of 8 times (coverage 25%, conditional accuracy 75%). The one rule-only prediction (double
+  buffering) failed (H8).
 
 Not yet measured: mechanism fidelity counter by counter (H7) and the search rerun on hardware counters (H9).
 Nsight Compute was blocked on the rented container (`ERR_NVGPUCTRPERM`); these need a host that allows

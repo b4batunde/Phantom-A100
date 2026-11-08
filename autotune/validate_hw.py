@@ -584,6 +584,13 @@ def main():
     rep = report(meas, pred, sc)
     open(os.path.join(OUT, "validation.md"), "w").write(rep)
     print(rep)
+    # ADDENDUM-2: coverage / conditional accuracy, written to separate files
+    from .decompose import decompose, report as dec_report
+    dec = decompose(sc)
+    json.dump(dec, open(os.path.join(OUT, "decomposition.json"), "w"), indent=1)
+    note = (f"Source: {meas['gpu']}, BH={meas['workload']['BH']}, N={meas['workload']['N']}; "
+            f"Nsight Compute: {meas['profiling']}.")
+    open(os.path.join(OUT, "decomposition.md"), "w").write(dec_report(dec, note))
 
 
 if __name__ == "__main__":

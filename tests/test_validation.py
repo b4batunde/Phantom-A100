@@ -139,3 +139,23 @@ def test_parse_and_aggregate_ncu_csv():
     agg = aggregate(ks)
     assert agg["l2_accesses"] == 9800 and agg["regs"] == 32 and agg["kernel_launches"] == 3
     assert agg["occupancy"] is None and agg["cta_limiter"] is None   # not collected -> unobservable
+
+
+def test_decomposition_separates_coverage_from_conditional_accuracy():
+    from autotune.decompose import tally
+    # insensitive predictor: ties everywhere, hardware differs
+    s = tally([("0", "+"), ("0", "-"), ("0", "+"), ("+", "+")])
+    assert s["coverage"] == 0.25 and s["conditional_accuracy"] == 1.0 and s["tie_resolution"] == 1.0
+    assert s["overall_accuracy"] == 0.25
+    # confidently wrong predictor: always commits, often opposite
+    s = tally([("+", "-"), ("-", "+"), ("+", "+"), ("+", "0")])
+    assert s["coverage"] == 1.0 and s["conditional_accuracy"] == 0.25 and s["confidently_wrong"] == 0.5
+
+
+def test_decomposition_on_fixture_runs():
+    from autotune.decompose import decompose, report as drep
+    man, pred, cache, static = load()
+    sc = score(fake_hw(cache, static, with_ncu=False), pred, cache, [])
+    d = decompose(sc)
+    assert d["simulator"]["by_counter"]["occupancy"]["claims"] == 0   # unobservable -> excluded
+    assert "Coverage" in drep(d, "SYNTHETIC FIXTURE")

@@ -60,15 +60,19 @@ These were computed after seeing the data. They describe it; they were not predi
 - **Structural vs tuning decisions.** Across the 51 simulated transitions, the simulator called the performance
   direction correctly for 18 of 19 *structural* transformations (tile, fuse, vectorize, tensor cores; the one
   miss is the v2/v3 reversal) and for 8 of 32 *tuning* transformations (tile shapes, register caps).
-- **The tuning misses are mostly blindness, not wrong calls.** For 24 of the 32 tuning transitions the
-  simulator predicted no change (within 2%); hardware showed a real difference in 22 of those. When the
-  simulator did predict a direction for a tuning change, it was right in 6 of 8.
+- **For tuning, the simulator is mostly insensitive, not mostly wrong.** For 24 of the 32 tuning transitions it
+  predicted a tie (within 2%); the A100 resolved 22 of those 24 into material differences. When it committed to
+  a direction for a tuning change, it was right in 6 of 8. In ADDENDUM-2 terms: coverage 25%, conditional
+  accuracy 75%, tie resolution 92%. The declared signatures show the opposite failure mode: full coverage, but
+  opposite to hardware in 43% of tuning claims. Full tables: `decomposition.md`.
 - **Inside the vectorized family** the simulator puts all 8 configurations within 1.2% of each other; on the
   A100 they span 2.2x (Spearman 0.55 within the family).
 
-Working conclusion, to be tested rather than assumed: **in this setup, simulator counters were reliable for
-structural decisions and for rejecting known blind spots, and unreliable for tile-level tuning and for absolute
-speedups.** One kernel, one workload, one GPU.
+Working conclusion, to be tested rather than assumed: **in this setup, simulation was informative for
+structural decisions and for rejecting known blind spots. For fine-grained tuning it was frequently insensitive
+to differences that are material on the A100, but when it did predict a direction, the prediction was usually
+useful. Absolute speedups were not reliable.** One kernel, one workload, one GPU. Coverage and conditional
+accuracy are reported separately from now on (ADDENDUM-2).
 
 ## Known defect (recorded before the run)
 

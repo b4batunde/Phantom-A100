@@ -1,0 +1,2178 @@
+{
+ "simulator": {
+  "by_counter": {
+   "regs": {
+    "claims": 51,
+    "committed": 29,
+    "ties": 22,
+    "coverage": 0.5686274509803921,
+    "conditional_accuracy": 0.896551724137931,
+    "confidently_wrong": 0.034482758620689655,
+    "tie_resolution": 0.0,
+    "overall_accuracy": 0.9411764705882353,
+    "counts": {
+     "committed_right": 26,
+     "confidently_wrong": 1,
+     "tie_resolved": 0,
+     "match": 48
+    }
+   },
+   "occupancy": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "cta_per_sm": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "blocks": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "kernel_launches": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "l2_accesses": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "dram_sectors": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "global_load_insn": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "shmem_insn": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "warp_insn": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "thread_insn": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "shmem_bank_conflicts": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "issue_util": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "scoreboard_frac": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "performance": {
+    "claims": 51,
+    "committed": 27,
+    "ties": 24,
+    "coverage": 0.5294117647058824,
+    "conditional_accuracy": 0.8888888888888888,
+    "confidently_wrong": 0.1111111111111111,
+    "tie_resolution": 0.9166666666666666,
+    "overall_accuracy": 0.5098039215686274,
+    "counts": {
+     "committed_right": 24,
+     "confidently_wrong": 3,
+     "tie_resolved": 22,
+     "match": 26
+    }
+   }
+  },
+  "by_equivalence": {
+   "same_definition": {
+    "claims": 51,
+    "committed": 29,
+    "ties": 22,
+    "coverage": 0.5686274509803921,
+    "conditional_accuracy": 0.896551724137931,
+    "confidently_wrong": 0.034482758620689655,
+    "tie_resolution": 0.0,
+    "overall_accuracy": 0.9411764705882353,
+    "counts": {
+     "committed_right": 26,
+     "confidently_wrong": 1,
+     "tie_resolved": 0,
+     "match": 48
+    }
+   },
+   "approximate": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "proxy": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "performance": {
+    "claims": 51,
+    "committed": 27,
+    "ties": 24,
+    "coverage": 0.5294117647058824,
+    "conditional_accuracy": 0.8888888888888888,
+    "confidently_wrong": 0.1111111111111111,
+    "tie_resolution": 0.9166666666666666,
+    "overall_accuracy": 0.5098039215686274,
+    "counts": {
+     "committed_right": 24,
+     "confidently_wrong": 3,
+     "tie_resolved": 22,
+     "match": 26
+    }
+   }
+  },
+  "by_family": {
+   "structural": {
+    "claims": 38,
+    "committed": 36,
+    "ties": 2,
+    "coverage": 0.9473684210526315,
+    "conditional_accuracy": 0.8888888888888888,
+    "confidently_wrong": 0.05555555555555555,
+    "tie_resolution": 0.0,
+    "overall_accuracy": 0.8947368421052632,
+    "counts": {
+     "committed_right": 32,
+     "confidently_wrong": 2,
+     "tie_resolved": 0,
+     "match": 34
+    }
+   },
+   "tuning": {
+    "claims": 64,
+    "committed": 20,
+    "ties": 44,
+    "coverage": 0.3125,
+    "conditional_accuracy": 0.9,
+    "confidently_wrong": 0.1,
+    "tie_resolution": 0.5,
+    "overall_accuracy": 0.625,
+    "counts": {
+     "committed_right": 18,
+     "confidently_wrong": 2,
+     "tie_resolved": 22,
+     "match": 40
+    }
+   },
+   "rule_only": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   }
+  },
+  "by_family_and_counter": {
+   "structural": {
+    "regs": {
+     "claims": 19,
+     "committed": 17,
+     "ties": 2,
+     "coverage": 0.8947368421052632,
+     "conditional_accuracy": 0.8235294117647058,
+     "confidently_wrong": 0.058823529411764705,
+     "tie_resolution": 0.0,
+     "overall_accuracy": 0.8421052631578947,
+     "counts": {
+      "committed_right": 14,
+      "confidently_wrong": 1,
+      "tie_resolved": 0,
+      "match": 16
+     }
+    },
+    "occupancy": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "cta_per_sm": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "blocks": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "kernel_launches": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "l2_accesses": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "dram_sectors": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "global_load_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "shmem_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "warp_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "thread_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "shmem_bank_conflicts": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "issue_util": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "scoreboard_frac": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "performance": {
+     "claims": 19,
+     "committed": 19,
+     "ties": 0,
+     "coverage": 1.0,
+     "conditional_accuracy": 0.9473684210526315,
+     "confidently_wrong": 0.05263157894736842,
+     "tie_resolution": null,
+     "overall_accuracy": 0.9473684210526315,
+     "counts": {
+      "committed_right": 18,
+      "confidently_wrong": 1,
+      "tie_resolved": 0,
+      "match": 18
+     }
+    }
+   },
+   "tuning": {
+    "regs": {
+     "claims": 32,
+     "committed": 12,
+     "ties": 20,
+     "coverage": 0.375,
+     "conditional_accuracy": 1.0,
+     "confidently_wrong": 0.0,
+     "tie_resolution": 0.0,
+     "overall_accuracy": 1.0,
+     "counts": {
+      "committed_right": 12,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 32
+     }
+    },
+    "occupancy": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "cta_per_sm": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "blocks": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "kernel_launches": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "l2_accesses": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "dram_sectors": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "global_load_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "shmem_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "warp_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "thread_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "shmem_bank_conflicts": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "issue_util": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "scoreboard_frac": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "performance": {
+     "claims": 32,
+     "committed": 8,
+     "ties": 24,
+     "coverage": 0.25,
+     "conditional_accuracy": 0.75,
+     "confidently_wrong": 0.25,
+     "tie_resolution": 0.9166666666666666,
+     "overall_accuracy": 0.25,
+     "counts": {
+      "committed_right": 6,
+      "confidently_wrong": 2,
+      "tie_resolved": 22,
+      "match": 8
+     }
+    }
+   },
+   "rule_only": {
+    "regs": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "occupancy": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "cta_per_sm": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "blocks": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "kernel_launches": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "l2_accesses": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "dram_sectors": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "global_load_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "shmem_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "warp_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "thread_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "shmem_bank_conflicts": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "issue_util": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "scoreboard_frac": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "performance": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    }
+   }
+  }
+ },
+ "declared": {
+  "by_counter": {
+   "regs": {
+    "claims": 30,
+    "committed": 30,
+    "ties": 0,
+    "coverage": 1.0,
+    "conditional_accuracy": 0.8666666666666667,
+    "confidently_wrong": 0.0,
+    "tie_resolution": null,
+    "overall_accuracy": 0.8666666666666667,
+    "counts": {
+     "committed_right": 26,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 26
+    }
+   },
+   "occupancy": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "cta_per_sm": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "blocks": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "kernel_launches": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "l2_accesses": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "dram_sectors": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "global_load_insn": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "shmem_insn": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "warp_insn": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "thread_insn": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "shmem_bank_conflicts": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "issue_util": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "scoreboard_frac": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "performance": {
+    "claims": 73,
+    "committed": 73,
+    "ties": 0,
+    "coverage": 1.0,
+    "conditional_accuracy": 0.5205479452054794,
+    "confidently_wrong": 0.3835616438356164,
+    "tie_resolution": null,
+    "overall_accuracy": 0.5205479452054794,
+    "counts": {
+     "committed_right": 38,
+     "confidently_wrong": 28,
+     "tie_resolved": 0,
+     "match": 38
+    }
+   }
+  },
+  "by_equivalence": {
+   "same_definition": {
+    "claims": 30,
+    "committed": 30,
+    "ties": 0,
+    "coverage": 1.0,
+    "conditional_accuracy": 0.8666666666666667,
+    "confidently_wrong": 0.0,
+    "tie_resolution": null,
+    "overall_accuracy": 0.8666666666666667,
+    "counts": {
+     "committed_right": 26,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 26
+    }
+   },
+   "approximate": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "proxy": {
+    "claims": 0,
+    "committed": 0,
+    "ties": 0,
+    "coverage": null,
+    "conditional_accuracy": null,
+    "confidently_wrong": null,
+    "tie_resolution": null,
+    "overall_accuracy": null,
+    "counts": {
+     "committed_right": 0,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 0
+    }
+   },
+   "performance": {
+    "claims": 73,
+    "committed": 73,
+    "ties": 0,
+    "coverage": 1.0,
+    "conditional_accuracy": 0.5205479452054794,
+    "confidently_wrong": 0.3835616438356164,
+    "tie_resolution": null,
+    "overall_accuracy": 0.5205479452054794,
+    "counts": {
+     "committed_right": 38,
+     "confidently_wrong": 28,
+     "tie_resolved": 0,
+     "match": 38
+    }
+   }
+  },
+  "by_family": {
+   "structural": {
+    "claims": 37,
+    "committed": 37,
+    "ties": 0,
+    "coverage": 1.0,
+    "conditional_accuracy": 0.8918918918918919,
+    "confidently_wrong": 0.0,
+    "tie_resolution": null,
+    "overall_accuracy": 0.8918918918918919,
+    "counts": {
+     "committed_right": 33,
+     "confidently_wrong": 0,
+     "tie_resolved": 0,
+     "match": 33
+    }
+   },
+   "tuning": {
+    "claims": 58,
+    "committed": 58,
+    "ties": 0,
+    "coverage": 1.0,
+    "conditional_accuracy": 0.5,
+    "confidently_wrong": 0.43103448275862066,
+    "tie_resolution": null,
+    "overall_accuracy": 0.5,
+    "counts": {
+     "committed_right": 29,
+     "confidently_wrong": 25,
+     "tie_resolved": 0,
+     "match": 29
+    }
+   },
+   "rule_only": {
+    "claims": 8,
+    "committed": 8,
+    "ties": 0,
+    "coverage": 1.0,
+    "conditional_accuracy": 0.25,
+    "confidently_wrong": 0.375,
+    "tie_resolution": null,
+    "overall_accuracy": 0.25,
+    "counts": {
+     "committed_right": 2,
+     "confidently_wrong": 3,
+     "tie_resolved": 0,
+     "match": 2
+    }
+   }
+  },
+  "by_family_and_counter": {
+   "structural": {
+    "regs": {
+     "claims": 18,
+     "committed": 18,
+     "ties": 0,
+     "coverage": 1.0,
+     "conditional_accuracy": 0.7777777777777778,
+     "confidently_wrong": 0.0,
+     "tie_resolution": null,
+     "overall_accuracy": 0.7777777777777778,
+     "counts": {
+      "committed_right": 14,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 14
+     }
+    },
+    "occupancy": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "cta_per_sm": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "blocks": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "kernel_launches": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "l2_accesses": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "dram_sectors": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "global_load_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "shmem_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "warp_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "thread_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "shmem_bank_conflicts": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "issue_util": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "scoreboard_frac": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "performance": {
+     "claims": 19,
+     "committed": 19,
+     "ties": 0,
+     "coverage": 1.0,
+     "conditional_accuracy": 1.0,
+     "confidently_wrong": 0.0,
+     "tie_resolution": null,
+     "overall_accuracy": 1.0,
+     "counts": {
+      "committed_right": 19,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 19
+     }
+    }
+   },
+   "tuning": {
+    "regs": {
+     "claims": 12,
+     "committed": 12,
+     "ties": 0,
+     "coverage": 1.0,
+     "conditional_accuracy": 1.0,
+     "confidently_wrong": 0.0,
+     "tie_resolution": null,
+     "overall_accuracy": 1.0,
+     "counts": {
+      "committed_right": 12,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 12
+     }
+    },
+    "occupancy": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "cta_per_sm": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "blocks": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "kernel_launches": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "l2_accesses": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "dram_sectors": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "global_load_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "shmem_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "warp_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "thread_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "shmem_bank_conflicts": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "issue_util": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "scoreboard_frac": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "performance": {
+     "claims": 46,
+     "committed": 46,
+     "ties": 0,
+     "coverage": 1.0,
+     "conditional_accuracy": 0.3695652173913043,
+     "confidently_wrong": 0.5434782608695652,
+     "tie_resolution": null,
+     "overall_accuracy": 0.3695652173913043,
+     "counts": {
+      "committed_right": 17,
+      "confidently_wrong": 25,
+      "tie_resolved": 0,
+      "match": 17
+     }
+    }
+   },
+   "rule_only": {
+    "regs": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "occupancy": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "cta_per_sm": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "blocks": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "kernel_launches": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "l2_accesses": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "dram_sectors": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "global_load_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "shmem_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "warp_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "thread_insn": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "shmem_bank_conflicts": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "issue_util": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "scoreboard_frac": {
+     "claims": 0,
+     "committed": 0,
+     "ties": 0,
+     "coverage": null,
+     "conditional_accuracy": null,
+     "confidently_wrong": null,
+     "tie_resolution": null,
+     "overall_accuracy": null,
+     "counts": {
+      "committed_right": 0,
+      "confidently_wrong": 0,
+      "tie_resolved": 0,
+      "match": 0
+     }
+    },
+    "performance": {
+     "claims": 8,
+     "committed": 8,
+     "ties": 0,
+     "coverage": 1.0,
+     "conditional_accuracy": 0.25,
+     "confidently_wrong": 0.375,
+     "tie_resolution": null,
+     "overall_accuracy": 0.25,
+     "counts": {
+      "committed_right": 2,
+      "confidently_wrong": 3,
+      "tie_resolved": 0,
+      "match": 2
+     }
+    }
+   }
+  }
+ }
+}
