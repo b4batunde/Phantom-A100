@@ -47,10 +47,10 @@ Results so far (**Simulated**, A100 slice, BH = 42, N = 128; full report in
 - **Rediscovery.** Starting from v1 and never told the historical path, the optimizer took
   v1 -> v2 -> v3 -> v3.1 -> v4 and stopped at v4 (57.9x over v1, the best trusted point among the 15 it can
   simulate), using 7 of 15 simulations. Every declared signature on that path held.
-- **It needed one non-greedy step.** At N = 128, fusion alone is slower than tiling (v3 is register-limited),
-  so greedy search stops at v2. The optimizer takes one non-improving step only when a diagnosed bottleneck
-  has no remedy from the current structure (CUDA-core math needs tensor cores, which need a fused kernel).
-  Without that rule (ablation) it stops at v2.
+- **In simulation it needed one non-greedy step** (corrected by the A100 run, below). The simulator puts fusion
+  alone slower than tiling, so greedy search stops at v2. The optimizer takes one non-improving step only when a
+  diagnosed bottleneck has no remedy from the current structure (CUDA-core math needs tensor cores, which need a
+  fused kernel). Without that rule (ablation) it stops at v2.
 - **Trust checks did their job.** Register caps look 1.9x faster than v3 in simulation, but ptxas spills
   188 bytes/thread on sm_80. They were flagged, not accepted. On v3.1, the cap raised resident blocks per
   SM (6 to 8) but not occupancy, because this grid has exactly 6 blocks per SM. The verdict was
@@ -60,20 +60,31 @@ Results so far (**Simulated**, A100 slice, BH = 42, N = 128; full report in
   51% of runs. The space is small (15 points) and one point dominates, so random search is a real
   competitor here. The bigger test is a larger space and other kernels.
 
-Not shown yet: whether any of this holds on a real A100. That test is **pre-registered**: the optimizer
-was frozen (tag `autotune-v1-sim-only`), and its predictions were written to
-[`results/autotune/preregistration/`](results/autotune/preregistration/README.md) before any hardware
-measurement: the full simulated ranking, every decision, predicted counter and performance directions for
-83 transitions, the simulator's known limitations, an explicit simulator-to-Nsight metric mapping, and
-hypotheses H1 to H9 with pass/fail criteria (including a possible v2/v3 reversal caused by a register-count
-disagreement between the simulator and the sm_80 compiler).
+### A100 results (Measured, pre-registered)
 
-`python -m autotune.validate_hw` (part of `scripts/run_all.sh`) scores those predictions, keeping three
-questions apart: **performance fidelity** (does simulation rank kernels correctly?), **mechanism fidelity**
-(do the predicted counter changes happen on hardware, counter by counter?) and **decision fidelity** (would
-the frozen optimizer have decided well on hardware data?). Nsight Compute profiling is optional; without
-counter permissions it falls back to timing, and unobservable counters are reported as such, not as
-misses. Hardware-informed changes go into autotune-v2. Design notes and limits:
+The optimizer was frozen (tag `autotune-v1-sim-only`) and its predictions were published
+([`results/autotune/preregistration/`](results/autotune/preregistration/README.md), tag `autotune-v1-prereg`)
+before any hardware measurement. Then all 23 kernels were timed on an A100-SXM4-80GB and
+`python -m autotune.validate_hw` scored the predictions. Full write-up:
+[`results/autotune/measured/FINDINGS.md`](results/autotune/measured/FINDINGS.md).
+
+- **The final decision held.** v4 is the fastest of all 23 kernels on the A100 (H2, H6). Simulated vs measured
+  ranking: Spearman 0.800, exactly at the pre-registered threshold (H1).
+- **The trust model held.** Register caps did worse on hardware than simulated in 6 of 6 cases (H4).
+- **The explanation did not hold.** v3 is 1.25x *faster* than v2 on the A100; the simulator said 1.65x slower
+  (H3, reversed). This was flagged as a risk before the run (the simulator sizes v3 at 242 registers, sm_80 at
+  168). The unlock step was compensating for a simulator artifact; on hardware, fusing straight from v1 is the
+  better first move.
+- **Magnitudes are off.** Tensor cores: 3.46x measured vs 10.75x simulated.
+- **Tuning is where the simulator is blind** (post-hoc): it got the direction right for 18 of 19 structural
+  transformations but 8 of 32 tile-shape and register-cap changes, mostly by predicting "no change" where the
+  A100 showed one. The one rule-only prediction (double buffering) failed (H8).
+
+Not yet measured: mechanism fidelity counter by counter (H7) and the search rerun on hardware counters (H9).
+Nsight Compute was blocked on the rented container (`ERR_NVGPUCTRPERM`); these need a host that allows
+profiling. Nothing in autotune-v1 changed after the run; hardware-informed changes are listed in
+[`autotune/V2_BACKLOG.md`](autotune/V2_BACKLOG.md). Design notes and limits:
+[`autotune/README.md`](autotune/README.md).
 [`autotune/README.md`](autotune/README.md).
 
 ## Findings: what you can and cannot learn without the GPU

@@ -1,0 +1,244 @@
+# Hardware validation of autotune-v1 (Measured)
+
+GPU: NVIDIA A100-SXM4-80GB (108 SMs, sm_80). Workload: BH=324, N=128, causal=0, d=64, FP16 (simulated BH=42 on a 14-SM slice, scaled x7.71). Time: median of 200 launches, CUDA events. Nsight Compute: **no_permission**.
+
+Frozen subject: commit `a86168113af8`. Pre-registration check: **frozen files match manifest**. Predictions are read from `results/autotune/preregistration/predictions.json`, never recomputed.
+
+## Pre-registered hypotheses
+
+| ID | Question | Result | Value |
+|---|---|---|---|
+| H1 | performance fidelity | **supported** | 0.800 |
+| H2 | performance fidelity | **supported** | fused_tc |
+| H3 | performance fidelity (v2/v3 ordering) | **reversed** | 0.803 |
+| H4 | trust model (register spills) | **supported** | 6 of 6 |
+| H5 | decision fidelity | **partial** | 3 of 4 |
+| H6 | decision fidelity | **supported** | 1.000 |
+| H7 | mechanism fidelity | **inconclusive (counters unobservable)** | 94%, n/a, n/a |
+| H8 | rule-only prediction (no simulator evidence) | **refuted** | 1 of 4 |
+| H9 | decision fidelity (search on hardware counters) | **inconclusive (Nsight counters unavailable)** | None |
+
+## 1. Performance fidelity: does simulation rank configurations correctly?
+
+- Points compared: 15; Spearman rho **0.800**, Kendall tau 0.657
+- Simulator's best trusted point `fused_tc`; measured best among simulated `fused_tc` (agree: yes); top-3 overlap 2 of 3; regret 1.00x
+- Measured best of all 23 points (including double buffering): `fused_tc`
+
+| Design point | Simulated cycles | Sim rank | Measured ms | HW rank | Trusted in sim |
+|---|---|---|---|---|---|
+| fused_tc | 52,659 | 1 | 0.0692 | 1 | yes |
+| fused_vec/br128/bc64 | 559,326 | 3 | 0.1638 | 2 | yes |
+| fused_vec/br128/bc32 | 561,725 | 5 | 0.1643 | 3 | yes |
+| fused_vec/br128/bc32/r128 | 561,541 | 4 | 0.2190 | 4 | no |
+| fused_vec/br64/bc64 | 563,975 | 7 | 0.2229 | 5 | yes |
+| fused_vec/br128/bc64/r128 | 559,186 | 2 | 0.2297 | 6 | no |
+| fused_vec/br64/bc32 | 565,972 | 9 | 0.2393 | 7 | yes |
+| fused/br128/bc32 | 1,333,912 | 13 | 0.2462 | 8 | yes |
+| fused_vec/br64/bc32/r128 | 565,540 | 8 | 0.2589 | 9 | no |
+| fused/br128/bc32/r128 | 686,124 | 10 | 0.2922 | 10 | no |
+| fused/br64/bc32/r128 | 732,923 | 11 | 0.3111 | 11 | no |
+| fused/br64/bc32 | 1,410,914 | 14 | 0.3379 | 12 | yes |
+| fused_vec/br64/bc64/r128 | 563,691 | 6 | 0.3533 | 13 | no |
+| tiled | 855,959 | 12 | 0.4209 | 14 | yes |
+| naive | 3,049,245 | 15 | 1.7568 | 15 | yes |
+
+## 2. Mechanism fidelity: do the predicted counter changes happen on hardware?
+
+Each transition is scored twice: against the **simulator's** observed direction and against the transformation's **declared** signature. A counter moved if it changed by more than 3%; performance by more than 2%. Unobservable hardware values are counted separately, never as mismatches.
+
+### Prediction accuracy by counter
+
+| Counter | Mapping | Simulator accuracy | (match / mismatch / unobservable) | Declared-signature accuracy | (match / mismatch) |
+|---|---|---|---|---|---|
+| Registers per thread | same_definition | **94%** | 48 / 3 / 0 | 87% | 26 / 4 |
+| Achieved occupancy | same_definition | **n/a** | 0 / 0 / 51 | n/a | 0 / 0 |
+| Resident blocks per SM | same_definition | **n/a** | 0 / 0 / 51 | n/a | 0 / 0 |
+| Blocks (grid size) | same_definition | **n/a** | 0 / 0 / 51 | n/a | 0 / 0 |
+| Kernel launches | same_definition | **n/a** | 0 / 0 / 51 | n/a | 0 / 0 |
+| L2 traffic | approximate | **n/a** | 0 / 0 / 51 | n/a | 0 / 0 |
+| DRAM traffic | approximate | **n/a** | 0 / 0 / 51 | n/a | 0 / 0 |
+| Global load instructions | approximate | **n/a** | 0 / 0 / 51 | n/a | 0 / 0 |
+| Shared-memory instructions | approximate | **n/a** | 0 / 0 / 51 | n/a | 0 / 0 |
+| Warp instructions | approximate | **n/a** | 0 / 0 / 51 | n/a | 0 / 0 |
+| Thread instructions | approximate | **n/a** | 0 / 0 / 51 | n/a | 0 / 0 |
+| Shared-memory bank conflicts | approximate | **n/a** | 0 / 0 / 51 | n/a | 0 / 0 |
+| Pipeline (issue) utilization | proxy | **n/a** | 0 / 0 / 51 | n/a | 0 / 0 |
+| Dependency (scoreboard) stalls | proxy | **n/a** | 0 / 0 / 51 | n/a | 0 / 0 |
+| Performance direction | performance | **51%** | 26 / 25 / 0 | 52% | 38 / 35 |
+
+### By mapping equivalence (H7)
+
+| Equivalence | Simulator accuracy | Declared accuracy | Unobservable |
+|---|---|---|---|
+| same_definition | 94% | 87% | 204 |
+| approximate | n/a | n/a | 357 |
+| proxy | n/a | n/a | 102 |
+| performance | 51% | 52% | 0 |
+
+### Transitions on the search path
+
+**`vectorize_fp16`**: `fused/br64/bc32` -> `fused_vec/br64/bc32` (simulated 2.49x, measured 1.41x)
+
+| Counter | Simulator predicted | A100 | Match | Declared | Match |
+|---|---|---|---|---|---|
+| Registers per thread | ↓ | = | ✗ | ↓ | ✗ |
+| Achieved occupancy | ↑ | UNOBSERVABLE | unobservable | ↑ | unobservable |
+| Resident blocks per SM | ↑ | UNOBSERVABLE | unobservable |  | unobservable |
+| Blocks (grid size) | = | UNOBSERVABLE | unobservable |  | unobservable |
+| Kernel launches | = | UNOBSERVABLE | unobservable |  | unobservable |
+| L2 traffic | ↓ | UNOBSERVABLE | unobservable | ↓ | unobservable |
+| DRAM traffic | = | UNOBSERVABLE | unobservable |  | unobservable |
+| Global load instructions | ↓ | UNOBSERVABLE | unobservable | ↓ | unobservable |
+| Shared-memory instructions | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Warp instructions | ↑ | UNOBSERVABLE | unobservable |  | unobservable |
+| Thread instructions | ↑ | UNOBSERVABLE | unobservable |  | unobservable |
+| Shared-memory bank conflicts | ↑ | UNOBSERVABLE | unobservable |  | unobservable |
+| Pipeline (issue) utilization | ↑ | UNOBSERVABLE | unobservable |  | unobservable |
+| Dependency (scoreboard) stalls | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Performance | faster | faster | ✓ | faster | ✓ |
+
+Simulator prediction accuracy: 1/2
+
+**`tensor_cores`**: `fused_vec/br64/bc32` -> `fused_tc` (simulated 10.75x, measured 3.46x)
+
+| Counter | Simulator predicted | A100 | Match | Declared | Match |
+|---|---|---|---|---|---|
+| Registers per thread | ↓ | ↓ | ✓ | ↓ | ✓ |
+| Achieved occupancy | ↑ | UNOBSERVABLE | unobservable |  | unobservable |
+| Resident blocks per SM | = | UNOBSERVABLE | unobservable |  | unobservable |
+| Blocks (grid size) | = | UNOBSERVABLE | unobservable |  | unobservable |
+| Kernel launches | = | UNOBSERVABLE | unobservable |  | unobservable |
+| L2 traffic | ↑ | UNOBSERVABLE | unobservable |  | unobservable |
+| DRAM traffic | = | UNOBSERVABLE | unobservable |  | unobservable |
+| Global load instructions | = | UNOBSERVABLE | unobservable |  | unobservable |
+| Shared-memory instructions | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Warp instructions | ↓ | UNOBSERVABLE | unobservable | ↓ | unobservable |
+| Thread instructions | ↓ | UNOBSERVABLE | unobservable | ↓ | unobservable |
+| Shared-memory bank conflicts | ↑ | UNOBSERVABLE | unobservable |  | unobservable |
+| Pipeline (issue) utilization | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Dependency (scoreboard) stalls | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Performance | faster | faster | ✓ | faster | ✓ |
+
+Simulator prediction accuracy: 2/2
+
+**`tile_smem`**: `naive` -> `tiled` (simulated 3.56x, measured 4.17x)
+
+| Counter | Simulator predicted | A100 | Match | Declared | Match |
+|---|---|---|---|---|---|
+| Registers per thread | ↓ | ↑ | ✗ |  |  |
+| Achieved occupancy | ↑ | UNOBSERVABLE | unobservable |  | unobservable |
+| Resident blocks per SM | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Blocks (grid size) | ? | UNOBSERVABLE | unobservable |  | unobservable |
+| Kernel launches | = | UNOBSERVABLE | unobservable | = | unobservable |
+| L2 traffic | ↓ | UNOBSERVABLE | unobservable | ↓ | unobservable |
+| DRAM traffic | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Global load instructions | ↓ | UNOBSERVABLE | unobservable | ↓ | unobservable |
+| Shared-memory instructions | ↑ | UNOBSERVABLE | unobservable | ↑ | unobservable |
+| Warp instructions | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Thread instructions | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Shared-memory bank conflicts | = | UNOBSERVABLE | unobservable |  | unobservable |
+| Pipeline (issue) utilization | ↑ | UNOBSERVABLE | unobservable |  | unobservable |
+| Dependency (scoreboard) stalls | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Performance | faster | faster | ✓ | faster | ✓ |
+
+Simulator prediction accuracy: 1/2
+
+**`fuse`**: `tiled` -> `fused/br64/bc32` (simulated 0.61x, measured 1.25x)
+
+| Counter | Simulator predicted | A100 | Match | Declared | Match |
+|---|---|---|---|---|---|
+| Registers per thread | ↑ | ↑ | ✓ | ↑ | ✓ |
+| Achieved occupancy | ↓ | UNOBSERVABLE | unobservable | ↓ | unobservable |
+| Resident blocks per SM | ↑ | UNOBSERVABLE | unobservable |  | unobservable |
+| Blocks (grid size) | ? | UNOBSERVABLE | unobservable |  | unobservable |
+| Kernel launches | ↓ | UNOBSERVABLE | unobservable | ↓ | unobservable |
+| L2 traffic | ↓ | UNOBSERVABLE | unobservable | ↓ | unobservable |
+| DRAM traffic | ↓ | UNOBSERVABLE | unobservable | ↓ | unobservable |
+| Global load instructions | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Shared-memory instructions | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Warp instructions | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Thread instructions | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Shared-memory bank conflicts | = | UNOBSERVABLE | unobservable |  | unobservable |
+| Pipeline (issue) utilization | ↓ | UNOBSERVABLE | unobservable |  | unobservable |
+| Dependency (scoreboard) stalls | ↑ | UNOBSERVABLE | unobservable |  | unobservable |
+| Performance | slower | faster | ✗ | faster | ✓ |
+
+Simulator prediction accuracy: 1/2
+
+### All transformations (declared signature vs hardware, all transitions)
+
+| Transformation | Counter | Declared | Simulator acc. | Declared acc. | Transitions |
+|---|---|---|---|---|---|
+| `vectorize_fp16` | Registers per thread | ↓ | 50% | 0% | 4 |
+| `vectorize_fp16` | Achieved occupancy | ↑ | n/a | n/a | 4 |
+| `vectorize_fp16` | L2 traffic | ↓ | n/a | n/a | 4 |
+| `vectorize_fp16` | Global load instructions | ↓ | n/a | n/a | 4 |
+| `vectorize_fp16` | Performance | faster | 100% | 100% | 4 |
+| `tensor_cores` | Registers per thread | ↓ | 100% | 100% | 12 |
+| `tensor_cores` | Warp instructions | ↓ | n/a | n/a | 12 |
+| `tensor_cores` | Thread instructions | ↓ | n/a | n/a | 12 |
+| `tensor_cores` | Performance | faster | 100% | 100% | 12 |
+| `reg_cap_128` | Registers per thread | ↓ | 100% | 100% | 10 |
+| `reg_cap_128` | Achieved occupancy | ↑ | n/a | n/a | 10 |
+| `reg_cap_128` | Resident blocks per SM | ↑ | n/a | n/a | 10 |
+| `reg_cap_128` | Performance | faster | 17% | 10% | 10 |
+| `grow_br` | Registers per thread |  | 100% | n/a | 10 |
+| `grow_br` | Blocks (grid size) | ↓ | n/a | n/a | 10 |
+| `grow_br` | L2 traffic | ↓ | n/a | n/a | 10 |
+| `grow_br` | Performance | faster | 33% | 90% | 10 |
+| `remove_reg_cap` | Registers per thread | ↑ | 100% | 100% | 10 |
+| `remove_reg_cap` | Achieved occupancy | ↓ | n/a | n/a | 10 |
+| `remove_reg_cap` | Performance |  | 17% | n/a | 10 |
+| `shrink_br` | Registers per thread |  | 100% | n/a | 10 |
+| `shrink_br` | Achieved occupancy | ↑ | n/a | n/a | 10 |
+| `shrink_br` | Blocks (grid size) | ↑ | n/a | n/a | 10 |
+| `shrink_br` | Performance | faster | 33% | 0% | 10 |
+| `grow_bc` | Registers per thread |  | 100% | n/a | 8 |
+| `grow_bc` | Resident blocks per SM | ? | n/a | n/a | 8 |
+| `grow_bc` | Shared-memory instructions | ? | n/a | n/a | 8 |
+| `grow_bc` | Performance | faster | 25% | 25% | 8 |
+| `double_buffer` | Dependency (scoreboard) stalls | ↓ | n/a | n/a | 8 |
+| `double_buffer` | Performance | faster | n/a | 25% | 8 |
+| `shrink_bc` | Registers per thread |  | 100% | n/a | 8 |
+| `shrink_bc` | Achieved occupancy | ↑ | n/a | n/a | 8 |
+| `shrink_bc` | Resident blocks per SM | ↑ | n/a | n/a | 8 |
+| `shrink_bc` | Performance | faster | 25% | 62% | 8 |
+| `tile_smem` | Registers per thread |  | 0% | n/a | 1 |
+| `tile_smem` | Kernel launches | = | n/a | n/a | 1 |
+| `tile_smem` | L2 traffic | ↓ | n/a | n/a | 1 |
+| `tile_smem` | Global load instructions | ↓ | n/a | n/a | 1 |
+| `tile_smem` | Shared-memory instructions | ↑ | n/a | n/a | 1 |
+| `tile_smem` | Performance | faster | 100% | 100% | 1 |
+| `fuse` | Registers per thread | ↑ | 100% | 100% | 2 |
+| `fuse` | Achieved occupancy | ↓ | n/a | n/a | 2 |
+| `fuse` | Kernel launches | ↓ | n/a | n/a | 2 |
+| `fuse` | L2 traffic | ↓ | n/a | n/a | 2 |
+| `fuse` | DRAM traffic | ↓ | n/a | n/a | 2 |
+| `fuse` | Performance | faster | 50% | 100% | 2 |
+
+## 3. Decision fidelity: would the frozen optimizer have decided well on hardware data?
+
+### Every decision the simulated search judged
+
+| Step | Transformation | Parent -> child | Simulated | Measured | Same direction | Trusted in sim |
+|---|---|---|---|---|---|---|
+| 1 | `fuse` | `naive` -> `fused/br64/bc32` | 2.16x | 5.20x | yes | yes |
+| 1 | `tile_smem` | `naive` -> `tiled` | 3.56x | 4.17x | yes | yes |
+| 3 | `vectorize_fp16` | `fused/br64/bc32` -> `fused_vec/br64/bc32` | 2.49x | 1.41x | yes | yes |
+| 3 | `reg_cap_128` | `fused/br64/bc32` -> `fused/br64/bc32/r128` | 1.93x | 1.09x | yes | no |
+| 4 | `tensor_cores` | `fused_vec/br64/bc32` -> `fused_tc` | 10.75x | 3.46x | yes | yes |
+| 4 | `reg_cap_128` | `fused_vec/br64/bc32` -> `fused_vec/br64/bc32/r128` | 1.00x | 0.92x | **no** | no |
+
+Direction held for 5 of 6.
+
+### Bottleneck classification: frozen rules on simulator vs hardware counters
+
+Unobservable: hardware counters were not collected.
+
+### The frozen search, rerun on hardware counters and hardware time (H9)
+
+Not run: hardware counters missing for fused/br64/bc32, fused/br64/bc32/r128, fused/br128/bc32, fused/br128/bc32/r128, fused_tc, fused_vec/br64/bc32, fused_vec/br64/bc32/r128, fused_vec/br64/bc32/db, fused_vec/br64/bc32/db/r128, fused_vec/br64/bc64, fused_vec/br64/bc64/r128, fused_vec/br64/bc64/db, fused_vec/br64/bc64/db/r128, fused_vec/br128/bc32, fused_vec/br128/bc32/r128, fused_vec/br128/bc32/db, fused_vec/br128/bc32/db/r128, fused_vec/br128/bc64, fused_vec/br128/bc64/r128, fused_vec/br128/bc64/db, fused_vec/br128/bc64/db/r128, naive, tiled.
+
+## What changes now
+
+Nothing in autotune-v1. Failures above are results. Changes motivated by these measurements belong in autotune-v2, reported against this file.
