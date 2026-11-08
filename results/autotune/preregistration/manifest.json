@@ -1,0 +1,49 @@
+{
+ "subject": "autotune-v1",
+ "tag": "autotune-v1-sim-only",
+ "frozen_commit": "a86168113af84d98002714061e399231dc0ce3c9",
+ "frozen_commit_date": "2026-11-07T18:28:10-07:00",
+ "written_at": "2026-11-08T02:41:27+00:00",
+ "hardware_measurements_observed": false,
+ "statement": "All optimization rules, counter signatures, confidence logic and the search algorithm were specified, and all predictions below were written, before any A100 measurement was observed. Nothing in `files` may change; hardware-informed changes go to autotune-v2.",
+ "sha256": {
+  "optimizer": {
+   "autotune/space.py": "60a479875c2e230865baa6c54829c9af13c94720a4e651ff16e83801181a7af4",
+   "autotune/counters.py": "074f691609782347e3afd9ef5dcad606eb0ae27937aaaf581f33fdbe4104b7b0",
+   "autotune/diagnose.py": "fb020f04c410ff5972a0f70b2131ae0f78c2b68b841668484a09b8666c9ce0a7",
+   "autotune/transforms.py": "9288cf7618602cac4c30254c19dab6e8dae1173da3cebe76ba711a0d7d536b18",
+   "autotune/policy.py": "98e02a592b7f986ad02621b81084c27c5e0f5e823e44a62bb8f65b77d7739233",
+   "autotune/search.py": "881573f1c708b1cebad9cf9f8a629ad6a4ccb97f8a1d2983523e1f26f97bb155",
+   "autotune/backends.py": "e5850829000338ddc686a38f141c36821a5a92e4a3ad78b9e1cf75343c919b36"
+  },
+  "experiment_drivers": {
+   "autotune/groundtruth.py": "e8bb7b12a758208447408d9891d2149e367d96b77acc40591eda0e516eb67ee2",
+   "autotune/experiments.py": "b83fc509bae093557a39d23a9884f05a0cbcd2b539844003da5ef326ae42d50d",
+   "autotune/run.py": "b982cf20918070c070dffc0d27756aeccbb1ccea91a247b13d97fa34b0dba2d6"
+  },
+  "kernels_and_harness": {
+   "csrc/kernels/device_common.cuh": "317d9cf0faacfab432157cbff60390ec98dafd55f60e26b079292e1a37368fac",
+   "csrc/kernels/naive.cuh": "e00d0dc1566fcf082750f452cd9bae55be83d9049f51c7de6b9bab4ec07d3d70",
+   "csrc/kernels/tiled.cuh": "bddaa8d7a8d92324209e29c60b3fe22b9a402f46ed49bbff0ddf642ce77c6d97",
+   "csrc/kernels/fused.cuh": "fc6aae749e2960cd62afdfef648f44041f17562f073d75c669d23d2b7d46830f",
+   "csrc/kernels/fused_tuned.cuh": "146528c1a945f26018da92721cfe0a494d3abe4aef6d8c3841540b588847061a",
+   "csrc/kernels/fused_tc.cuh": "25a0f4d2b2ea9a37a434ae1e0dbeeba9885997f853303e96e60fd06f9ca6c5c9",
+   "sim/harness.cu": "90ac8936a423b63c794643f60f2e929d80c7f14cba20d2d059d03e5e377273a5"
+  },
+  "simulator": {
+   "sim/configs/A100_slice/gpgpusim.config": "70bdd729ddd25bd2159a63795207f1f6c0c8bee9032423a3d1ce45732ad693b6",
+   "sim/patches/all-fixes-for-gpgpu-sim-dev-4195dd4.patch": "2d19084bc838fc1ec53a438301c6db8476d2872ee7cb7a30c4abf042c9bc959b"
+  },
+  "simulated_data": {
+   "results/autotune/sim_cache.json": "89fc36e4756686cb93b2995a2c1c655581ef4ac0020f69e1004f548005aaeb02",
+   "results/autotune/experiments.json": "37807af8b3ad742262fb2d9ef1e19b24efabd7e446f7a8e20c3d3516c5ccc72a",
+   "results/autotune/static_sm80.json": "316a1a9328d8ef8e8924debc96535480a44439dfe668673bbb448809c3288e8f",
+   "results/autotune/beliefs.json": "6693d692b277d4ee8864acda0f67cf94f1dda93628334d229c44ac5588efa69a",
+   "results/autotune/simulator_logs.tar.gz": "9e0f69d50eeb914a5696783b04dfa92e27db1a738bc0afa05772df03fdfbe574"
+  }
+ },
+ "tolerances": {
+  "counter_direction": 0.03,
+  "performance_direction": 0.02
+ }
+}
